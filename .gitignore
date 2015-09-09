@@ -1,0 +1,12 @@
+packages/
+Holofunk/Holofunk/bin/x64/Debug/TextureContent/
+Holofunkinect/obj/
+SceneGraph/obj/
+VSUnitTests/obj/
+Test/obj/
+StateMachine/obj/
+Holofunk/Holofunk/obj/
+BassVst/Win32/
+Core/obj/
+HolofunkBass/obj/
+Holofunkinect/bin/
