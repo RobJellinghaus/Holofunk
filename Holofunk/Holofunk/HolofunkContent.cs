@@ -50,6 +50,15 @@ namespace Holofunk
         Texture2D m_recordCircle;
         Texture2D m_rewindCircle;
         Texture2D m_rightHand;
+        Texture2D m_slide_1989_tuib;
+        Texture2D m_slide_beardyandme;
+        Texture2D m_slide_BeardymanTED;
+        Texture2D m_slide_castle_looping;
+        Texture2D m_slide_environment;
+        Texture2D m_slide_holofunkcom;
+        Texture2D m_slide_holofunkdesign;
+        Texture2D m_slide_loopfest;
+        Texture2D m_slide_reggietoys;
         Texture2D m_tinyDot;
         Texture2D m_unmuteCircle;
 
@@ -85,6 +94,15 @@ namespace Holofunk
             m_rightHand = content.Load<Texture2D>("RightHand" + EXT);
             m_recordCircle = content.Load<Texture2D>("RecCircle" + EXT);
             m_rewindCircle = content.Load<Texture2D>("RewindCircle" + EXT);
+            m_slide_1989_tuib = content.Load<Texture2D>("slide_1989_tuib" + EXT);
+            m_slide_beardyandme = content.Load<Texture2D>("slide_beardyandme" + EXT);
+            m_slide_BeardymanTED = content.Load<Texture2D>("slide_BeardymanTED" + EXT);
+            m_slide_castle_looping = content.Load<Texture2D>("slide_castle_looping" + EXT);
+            m_slide_environment = content.Load<Texture2D>("slide_environment" + EXT);
+            m_slide_holofunkcom = content.Load<Texture2D>("slide_holofunkcom" + EXT);
+            m_slide_holofunkdesign = content.Load<Texture2D>("slide_holofunkdesign" + EXT);
+            m_slide_loopfest = content.Load<Texture2D>("slide_loopfest" + EXT);
+            m_slide_reggietoys = content.Load<Texture2D>("slide_reggietoys" + EXT);
             m_tinyDot = content.Load<Texture2D>("2x2_filled_square" + EXT);
             m_unmuteCircle = content.Load<Texture2D>("UnmuteCircle" + EXT);
 
