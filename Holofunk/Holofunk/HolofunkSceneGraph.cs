@@ -166,7 +166,7 @@ namespace Holofunk
                 long freeVideoMB = holofunkModel.VideoAllocator.TotalFreeListSpace / 1024 / 1024;
 
                 m_statusText.Text.AppendFormat(
-                    "BPM: {0} | Update FPS: {1} | Kinect FPS: {2} | CPU: {3}%\nAudio: {4}/{5}MB | Video: {6}/{7}MB | Free streams: {8}\n{9}\n",
+                    "Time: {10}:{11:02} | BPM: {0} | Update FPS: {1} | Kinect FPS: {2} | CPU: {3}%\nAudio: {4}/{5}MB | Video: {6}/{7}MB | Free streams: {8}\n{9}\n",
                     Clock.BPM,
                     frameRateMsec == 0 ? 0 : Math.Floor((1000f / frameRateMsec) * 10) / 10,
                     kinect.m_totalFrames / Clock.Now.Seconds,
@@ -177,7 +177,9 @@ namespace Holofunk
                     usedVideoMB,
                     Audio.StreamPoolFreeCount,
                     (Spam.TopLine1 == null ? "" : Spam.TopLine1)
-                    + "\n" + (Spam.TopLine2 == null ? "" : Spam.TopLine2));
+                    + "\n" + (Spam.TopLine2 == null ? "" : Spam.TopLine2),
+                    DateTime.Now.Hour,
+                    DateTime.Now.Minute);
             }
 
             // Scale to byte and use for all RGBA components (premultiplied alpha, don't you know)
