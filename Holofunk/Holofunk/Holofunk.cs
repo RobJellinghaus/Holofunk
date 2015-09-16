@@ -89,7 +89,7 @@ namespace Holofunk
         /// <summary>
         ///  Amount to shrink the head by
         /// </summary>
-        internal const float HeadRatio = 0.9f;
+        internal const float HeadRatio = 1.3f;
 
         #endregion
 
