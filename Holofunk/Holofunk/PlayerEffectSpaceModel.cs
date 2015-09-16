@@ -182,7 +182,7 @@ namespace Holofunk
 
         public void InitializeParametersFromMicrophone()
         {
-            m_parameters = m_parent.MicrophoneParameters.Copy(forceMutable: true);
+            m_parameters = m_parent.PlayerModel.MicrophoneParameters.Copy(forceMutable: true);
             m_baseParameters = m_parameters.Copy();
         }
 
@@ -198,12 +198,12 @@ namespace Holofunk
 
         internal void ShareMicrophoneParameters()
         {
-            m_parent.MicrophoneParameters.ShareAll(m_parameters);
+            m_parent.PlayerModel.MicrophoneParameters.ShareAll(m_parameters);
         }
 
         internal void FlushMicrophoneParameters()
         {
-            m_parent.MicrophoneParameters.ShareAll(m_parameters.Copy());
+            m_parent.PlayerModel.MicrophoneParameters.ShareAll(m_parameters.Copy());
         }
 
         public override void GameUpdate(Moment now)
@@ -214,7 +214,7 @@ namespace Holofunk
                 // when not dragging, we handle all selection, etc. as usual; 
                 // e.g. we delegate to the usual player code
                 m_parent.GameUpdate(now);
-                m_parent.SceneGraph.Update(m_parent, m_parent.Kinect, now);
+                m_parent.SceneGraph.Update(m_parent, m_parent.HolofunkModel.Kinect, now);
             }
             else {
                 if (MicrophoneSelected) {
@@ -232,7 +232,7 @@ namespace Holofunk
                 m_parent.UpdateFromChildState(now);
             }
 
-            m_sceneGraph.Update(m_parent, m_parent.Kinect, now);
+            m_sceneGraph.Update(m_parent, m_parent.HolofunkModel.Kinect, now);
         }
 
         /// <summary>Get the vector from the drag start location to the knob, given the current hand position.</summary>

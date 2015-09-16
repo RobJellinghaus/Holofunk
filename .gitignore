@@ -10,3 +10,7 @@ BassVst/Win32/
 Core/obj/
 HolofunkBass/obj/
 Holofunkinect/bin/
+Holofunk/Holofunk/bin/x64/Release/TextureContent/HollowFace1.png
+Holofunk/Holofunk/bin/x64/Release/
+*.opensdf
+*.sdf

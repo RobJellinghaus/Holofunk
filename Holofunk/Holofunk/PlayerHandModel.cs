@@ -84,33 +84,18 @@ namespace Holofunk
 
         internal HolofunkMachine StateMachine { get { return m_stateMachine; } }
 
-        internal int PlayerIndex { get { return m_parent.PlayerIndex; } }
+        internal PlayerModel PlayerModel { get { return m_parent; } }
+        internal HolofunkModel HolofunkModel { get { return m_parent.HolofunkModel; } }
+
         internal bool IsRightHand { get { return m_isRightHand; } }
-        internal Color PlayerColor { get { return m_parent.PlayerColor; } }
 
         internal PlayerHandSceneGraph SceneGraph { get { return m_isRightHand ? m_parent.PlayerSceneGraph.RightHandSceneGraph : m_parent.PlayerSceneGraph.LeftHandSceneGraph; } }
 
         internal Vector2 HandPosition { get { return SceneGraph.HandPosition; } }
 
-        internal HolofunKinect Kinect { get { return m_parent.Kinect; } }
-
-        internal int AsioChannel { get { return m_parent.AsioChannel; } }
-        internal List<Loopie> Loopies { get { return m_parent.Loopies; } }
-        internal HolofunkBass BassAudio { get { return m_parent.BassAudio; } }
-
-        internal ParameterMap MicrophoneParameters { get { return m_parent.MicrophoneParameters; } }
-
         internal int EffectPresetIndex { get { return m_effectPresetIndex; } set { m_effectPresetIndex = value; } }
 
-        internal ArmPose OtherArmPose { get { return m_parent.Kinect.GetArmPose(PlayerIndex, IsRightHand ? Side.Left : Side.Right); } }
-
-        internal float RequestedBPM { get { return m_parent.RequestedBPM; } set { m_parent.RequestedBPM = value; } }
-
-        internal Clock Clock { get { return m_parent.Clock; } }
-
-        internal HolofunkView SecondaryView { get { return m_parent.SecondaryView; } set { m_parent.SecondaryView = value; } }
-
-        internal bool IsRecordingWAV { get { return m_parent.IsRecordingWAV; } }
+        internal ArmPose OtherArmPose { get { return HolofunkModel.Kinect.GetArmPose(PlayerModel.PlayerIndex, IsRightHand ? Side.Left : Side.Right); } }
 
         #endregion
 
@@ -195,11 +180,11 @@ namespace Holofunk
         {
             InvalidateTouchedLoopies();
 
-            UpdateTouchedLoopies(m_parent.Loopies,
+            UpdateTouchedLoopies(HolofunkModel.Loopies,
                 HandPosition,
                 SceneGraph.HandDiameter * MagicNumbers.LoopieScale,
-                PlayerColor,
-                Kinect.ViewportSize);
+                PlayerModel.PlayerColor,
+                HolofunkModel.Kinect.ViewportSize);
 
             List<Loopie> touched = TouchedLoopies;
             foreach (Loopie loopie in touched) {
@@ -241,7 +226,7 @@ namespace Holofunk
             }
              */
             
-            dest.SetFromAverage(Clock.Time(0), touchedParameterMaps);
+            dest.SetFromAverage(HolofunkModel.Clock.Time(0), touchedParameterMaps);
         }
 
         /// <summary>
@@ -271,7 +256,7 @@ namespace Holofunk
                 // May be no held loopie if we weren't able to start recording due to lack of free streams
                 if (m_heldLoopie.HasValue) {
                     lock (m_heldLoopie.Value) { // [KinectThread] to ensure atomic m_heldLoopie.StopRecordingAtNextBeat
-                        m_heldLoopie.Value.StopRecordingAtNextBeat(now, MicrophoneParameters);
+                        m_heldLoopie.Value.StopRecordingAtNextBeat(now, PlayerModel.MicrophoneParameters);
                         m_heldLoopie = Option<Loopie>.None;
                     }
                 }
@@ -283,7 +268,7 @@ namespace Holofunk
             foreach (Loopie loopie in TouchedLoopies) {
                 loopie.Track.Parameters.ShareAll(parameters);
                 // TODO: figure out how to handle these moments outside of time... Time(0) is terrible
-                loopie.Track.UpdateEffects(Clock.Time(0));
+                loopie.Track.UpdateEffects(HolofunkModel.Clock.Time(0));
             }
         }
     }
