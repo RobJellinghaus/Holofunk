@@ -64,6 +64,16 @@ namespace Holofunk
         // the main metronome BeatNode)
         float m_requestedBPM;
 
+        /// <summary>
+        /// The index of the current slide.
+        /// </summary>
+        int m_slideIndex;
+
+        /// <summary>
+        /// Is the slide visible?
+        /// </summary>
+        bool m_slideVisible;
+
         /// <summary>Are we showing the secondary view in the secondary window?  (If not, the primary view is shown.)</summary>
         HolofunkView m_secondaryView = HolofunkView.Secondary;
 
@@ -127,7 +137,21 @@ namespace Holofunk
 
         internal bool IsRecordingWAV { get { return m_bass.IsRecordingWAV; } }
 
+        internal bool SlideVisible { get { return m_slideVisible; } set { m_slideVisible = value; } }
+        internal int SlideIndex { get { return m_slideIndex; } }
+
         #endregion
+
+        internal void AdvanceSlide(int direction)
+        {
+            Debug.Assert(direction == 1 || direction == -1);
+            m_slideIndex += direction;
+            m_slideIndex %= Content.Slides.Length;
+            if (m_slideIndex < 0) 
+            {
+                m_slideIndex = Content.Slides.Length - 1;
+            }
+        }
 
         public void StartRecordingWAV()
         {

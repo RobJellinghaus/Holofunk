@@ -89,7 +89,7 @@ namespace Holofunk
 
             m_handNode = new SpriteNode(m_handGroup, isRight ? "Right Hand" : "Left Hand", null);
             m_handNode.Origin = new Vector2(0.5f);
-            m_handNode.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored);
+            m_handNode.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored | SecondaryViewOption.TextureMirrored);
 
             m_effectLabelGroup = new GroupNode(m_handGroup, Transform.Identity, "Effect label group");
 
@@ -175,12 +175,12 @@ namespace Holofunk
             // doesn't line up well with the skeleton-to-depth-mapped hand positions.
             m_handGroup.LocalTransform = new Transform(
                 kinect.GetJointViewportPosition(
-                    playerHandModel.PlayerIndex,
+                    playerHandModel.PlayerModel.PlayerIndex,
                     playerHandModel.IsRightHand ? JointType.HandRight : JointType.HandLeft) + MagicNumbers.ScreenHandAdjustment,
                 new Vector2(MagicNumbers.LoopieScale));
 
             // and make the mike signal update appropriately
-            m_handMikeSignal.Update(now, false, playerHandModel.PlayerColor);
+            m_handMikeSignal.Update(now, false, playerHandModel.PlayerModel.PlayerColor);
 
             if (m_effectLabelShownMoment.HasValue) {
                 Duration<Sample> elapsed = now.Time - m_effectLabelShownMoment.Value.Time;

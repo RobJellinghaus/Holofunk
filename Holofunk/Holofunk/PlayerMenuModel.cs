@@ -163,7 +163,7 @@ namespace Holofunk
             }
 
             // now update the scene graph since the selected item is set properly
-            m_sceneGraph.Update(m_playerHandModel.Kinect, now);
+            m_sceneGraph.Update(m_playerHandModel.HolofunkModel.Kinect, now);
         }
 
         /// <summary>The user is leaving menu state; run the action of the selected item (if any item is selected).</summary>

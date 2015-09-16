@@ -73,15 +73,10 @@ namespace Holofunk
 
         #region Properties
 
+        internal HolofunkModel HolofunkModel { get { return m_parent; } }
+
         internal int PlayerIndex { get { return m_playerIndex; } }
         internal int AsioChannel { get { return m_asioChannel; } }
-        internal List<Loopie> Loopies { get { return m_parent.Loopies; } }
-        internal HolofunkSceneGraph SceneGraph { get { return m_parent.SceneGraph; } }
-        internal HolofunKinect Kinect { get { return m_parent.Kinect; } }
-        internal HolofunkBass BassAudio { get { return m_parent.Bass; } }
-        internal Clock Clock { get { return m_parent.Clock; } }
-        // The requested BPM.
-        internal float RequestedBPM { get { return m_parent.RequestedBPM; } set { m_parent.RequestedBPM = value; } }
 
         internal PlayerSceneGraph PlayerSceneGraph { get { return m_playerSceneGraph; } }
 
@@ -92,8 +87,6 @@ namespace Holofunk
 
         /// <summary>Is the microphone selected?</summary>
         internal bool MicrophoneSelected { get { return m_microphoneSelected; } set { m_microphoneSelected = value; } }
-
-        internal HolofunkView SecondaryView { get { return m_parent.SecondaryView; } set { m_parent.SecondaryView = value; } }
 
         internal PlayerHandModel LeftHandModel { get { return m_leftHandModel; } }
         internal PlayerHandModel RightHandModel { get { return m_rightHandModel; } }
@@ -133,7 +126,7 @@ namespace Holofunk
 
         public void OnLeftHand(HandPose transition)
         {
-            Moment now = Clock.Now;
+            Moment now = HolofunkModel.Clock.Now;
             lock (m_leftHandModel.StateMachine) {
                 Spam.Model.WriteLine("PlayerModel.OnLeftHand: received transition " + transition);
                 m_leftHandModel.StateMachine.OnNext(LoopieEvent.FromHandPose(transition), now);
@@ -142,7 +135,7 @@ namespace Holofunk
 
         public void OnRightHand(HandPose transition)
         {
-            Moment now = Clock.Now;
+            Moment now = HolofunkModel.Clock.Now;
             lock (m_rightHandModel.StateMachine) {
                 Spam.Model.WriteLine("PlayerModel.OnRightHand: received transition " + transition);
                 m_rightHandModel.StateMachine.OnNext(LoopieEvent.FromHandPose(transition), now);
@@ -151,7 +144,7 @@ namespace Holofunk
 
         public void OnLeftArm(ArmPose transition)
         {
-            Moment now = Clock.Now;
+            Moment now = HolofunkModel.Clock.Now;
             // fire Other* event at the *other* hand model
             lock (m_rightHandModel.StateMachine) {
                 Spam.Model.WriteLine("PlayerModel.OnLeftArm: received transition " + transition);
@@ -161,7 +154,7 @@ namespace Holofunk
 
         public void OnRightArm(ArmPose transition)
         {
-            Moment now = Clock.Now;
+            Moment now = HolofunkModel.Clock.Now;
             lock (m_leftHandModel.StateMachine) {
                 Spam.Model.WriteLine("PlayerModel.OnRightArm: received transition " + transition);
                 m_leftHandModel.StateMachine.OnNext(LoopieEvent.FromArmPose(transition), now);
@@ -171,7 +164,7 @@ namespace Holofunk
         public void BodyFrameUpdate(HolofunKinect kinect)
         {
             // thread-safe operation: snapshot current sample time
-            Moment now = Clock.Now;
+            Moment now = HolofunkModel.Clock.Now;
 
             // get the head position
             Vector2 headPosition = kinect.GetJointViewportPosition(PlayerIndex, Microsoft.Kinect.JointType.Head);
@@ -231,7 +224,7 @@ namespace Holofunk
         public override void GameUpdate(Moment now)
         {
             // Push the current microphone parameters to BASS.
-            BassAudio.UpdateMicrophoneParameters(m_asioChannel, m_microphoneParameters, now);
+            HolofunkModel.Bass.UpdateMicrophoneParameters(m_asioChannel, m_microphoneParameters, now);
 
             // We update the model of the state machine of each hand's model.
             // Each hand's state machine may have some layered model in place right now.
@@ -249,11 +242,11 @@ namespace Holofunk
         {
             lock (machine) {
                 Duration<Sample> sinceLastTransition = now.Time - machine.LastTransitionMoment.Time;
-                if (sinceLastTransition > (long)Clock.ContinuousBeatDuration) {
+                if (sinceLastTransition > (long)HolofunkModel.Clock.ContinuousBeatDuration) {
                     machine.OnNext(LoopieEvent.Beat, now);
                     // TODO: suspicious rounding here... this is probably liable to lose fractional beats...
                     // not clear how much beat events will wind up being used though.
-                    machine.LastTransitionMoment = machine.LastTransitionMoment.Clock.Time(machine.LastTransitionMoment.Time + (long)Clock.ContinuousBeatDuration);
+                    machine.LastTransitionMoment = machine.LastTransitionMoment.Clock.Time(machine.LastTransitionMoment.Time + (long)HolofunkModel.Clock.ContinuousBeatDuration);
                 }
             }
         }

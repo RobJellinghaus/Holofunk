@@ -49,6 +49,8 @@ namespace Holofunk.SceneGraphs
                                                                                       
         public abstract SpriteFont SpriteFont { get; }
 
+        public abstract Texture2D[] Slides { get; }
+
         public abstract Texture2D NewDynamicTexture(int width, int height);
     }
 }

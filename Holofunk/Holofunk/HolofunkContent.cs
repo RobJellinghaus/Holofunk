@@ -53,10 +53,12 @@ namespace Holofunk
         Texture2D m_slide_1989_tuib;
         Texture2D m_slide_beardyandme;
         Texture2D m_slide_BeardymanTED;
+        Texture2D m_slide_beardy_monkey_jazz;
         Texture2D m_slide_castle_looping;
         Texture2D m_slide_environment;
         Texture2D m_slide_holofunkcom;
         Texture2D m_slide_holofunkdesign;
+        Texture2D m_slide_holofunkfnf;
         Texture2D m_slide_loopfest;
         Texture2D m_slide_reggietoys;
         Texture2D m_tinyDot;
@@ -65,6 +67,8 @@ namespace Holofunk
         SpriteFont m_spriteFont;
 
         GraphicsDevice m_device;
+
+        Texture2D[] m_slides;
 
         public HolofunkTextureContent(ContentManager content, GraphicsDevice device)
         {
@@ -97,10 +101,12 @@ namespace Holofunk
             m_slide_1989_tuib = content.Load<Texture2D>("slide_1989_tuib" + EXT);
             m_slide_beardyandme = content.Load<Texture2D>("slide_beardyandme" + EXT);
             m_slide_BeardymanTED = content.Load<Texture2D>("slide_BeardymanTED" + EXT);
+            m_slide_beardy_monkey_jazz = content.Load<Texture2D>("slide_beardy_monkey_jazz" + EXT);
             m_slide_castle_looping = content.Load<Texture2D>("slide_castle_looping" + EXT);
             m_slide_environment = content.Load<Texture2D>("slide_environment" + EXT);
             m_slide_holofunkcom = content.Load<Texture2D>("slide_holofunkcom" + EXT);
             m_slide_holofunkdesign = content.Load<Texture2D>("slide_holofunkdesign" + EXT);
+            m_slide_holofunkfnf = content.Load<Texture2D>("slide_holofunkfnf" + EXT);
             m_slide_loopfest = content.Load<Texture2D>("slide_loopfest" + EXT);
             m_slide_reggietoys = content.Load<Texture2D>("slide_reggietoys" + EXT);
             m_tinyDot = content.Load<Texture2D>("2x2_filled_square" + EXT);
@@ -109,6 +115,21 @@ namespace Holofunk
             m_spriteFont = content.Load<SpriteFont>("Arial16");
 
             m_device = device;
+
+            m_slides = new Texture2D[] 
+            { 
+                m_slide_1989_tuib, 
+                m_slide_BeardymanTED, 
+                m_slide_reggietoys, 
+                m_slide_beardy_monkey_jazz, 
+                m_slide_castle_looping, 
+                m_slide_beardyandme, 
+                m_slide_holofunkdesign, 
+                m_slide_holofunkfnf,
+                m_slide_loopfest,
+                m_slide_environment,
+                m_slide_holofunkcom,
+            };
         }
 
         public override Texture2D BigDot { get { return m_bigDot; } }
@@ -141,6 +162,8 @@ namespace Holofunk
         public override Texture2D UnmuteCircle { get { return m_unmuteCircle; } }
 
         public override SpriteFont SpriteFont { get { return m_spriteFont; } }
+
+        public override Texture2D[] Slides { get { return m_slides; } }
 
         public override Texture2D NewDynamicTexture(int width, int height)
         {

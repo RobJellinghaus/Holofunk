@@ -33,6 +33,12 @@ namespace Holofunk
         /// <summary>The pulsing rainbow background.</summary>
         readonly SpriteNode m_background;
 
+        /// <summary>
+        /// The slide (as in, Powerpoint slide -- a switchable background teture in front
+        /// of the pulsing background).
+        /// </summary>
+        readonly SpriteNode m_slide;
+
         /// <summary>The status text.</summary>
         readonly TextNode m_statusText;
 
@@ -76,10 +82,18 @@ namespace Holofunk
                     graphicsDevice,
                     canvasSize,
                     Color.Black,
-                    new Color(0x80, 0x80, 0x80, 0x80),
-                    Color.Gray,
-                    Color.LightSlateGray));
+                    new Color(0x10, 0x10, 0x10, 0x10),
+                    new Color(0x20, 0x20, 0x20, 0x20),
+                    new Color(0x20, 0x20, 0x20, 0x20)));
             m_background.LocalTransform = Transform.Identity;
+
+            m_slide = new SpriteNode(
+                RootNode,
+                "Slide",
+                Content.Slides[0]);
+            m_slide.LocalTransform = new Transform(new Vector2(canvasSize.X - (int)(Content.Slides[0].Width * 1.1f),
+                (canvasSize.Y - (int)Content.Slides[0].Height) / 2));
+            m_slide.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored | SecondaryViewOption.TextureMirrored);
 
             // constructing the nodes adds them as children of the parent, in first-at-bottom Z order.
 
@@ -172,6 +186,13 @@ namespace Holofunk
             m_background.SecondaryColor = backgroundColor;
 
             m_beatNode.Update(now);
+
+            Texture2D currentSlide = Content.Slides[holofunkModel.SlideIndex];
+            m_slide.Texture = currentSlide;
+            m_slide.LocalTransform = new Transform(new Vector2(
+                m_canvasSize.X - (int)(currentSlide.Width),
+                currentSlide.Height / 8));
+            m_slide.Color = holofunkModel.SlideVisible ? Color.White : new Color(0);
 
             Spam.Graphics.WriteLine("EndUpdate");
         }

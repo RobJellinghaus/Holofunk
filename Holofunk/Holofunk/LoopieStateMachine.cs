@@ -88,7 +88,7 @@ namespace Holofunk
                 "initial",
                 root,
                 (evt, model) => {
-                    model.SceneGraph.HandColor = model.PlayerColor;
+                    model.SceneGraph.HandColor = model.PlayerModel.PlayerColor;
                 });
 
             var ret = new LoopieStateMachine(initial, LoopieEventComparer.Instance);
@@ -114,16 +114,16 @@ namespace Holofunk
                 "recording",
                 armed,
                 (evt, model) => {
-                    model.StartRecording(model.Clock.Now);
+                    model.StartRecording(model.HolofunkModel.Clock.Now);
 
                     model.SceneGraph.HandColor = new Color((byte)0x80, (byte)0, (byte)0, (byte)0x80);
                     model.SceneGraph.MikeSignalColor = new Color((byte)0x80, (byte)0, (byte)0, (byte)0x80);
                     model.SceneGraph.PushHandTexture(model.SceneGraph.Content.HollowCircle);
                 },
                 (evt, model) => {
-                    model.StopRecordingAtCurrentBeat(model.Clock.Now);
+                    model.StopRecordingAtCurrentBeat(model.HolofunkModel.Clock.Now);
 
-                    model.SceneGraph.HandColor = model.PlayerColor;
+                    model.SceneGraph.HandColor = model.PlayerModel.PlayerColor;
                     model.SceneGraph.MikeSignalColor = new Color(0);
                     model.SceneGraph.PopHandTexture();
                 });
@@ -313,33 +313,33 @@ namespace Holofunk
                 pointing,
                 (evt, model) => { },
                 (evt, model) => model.RunSelectedMenuItem(),
-                entryConversionFunc: playerModel => {
+                entryConversionFunc: playerHandModel => {
                     bool areAnyLoopiesMine = false;
-                    foreach (Loopie loopie in playerModel.Loopies) {
-                        if (loopie.PlayerIndex == playerModel.PlayerIndex) {
+                    foreach (Loopie loopie in playerHandModel.HolofunkModel.Loopies) {
+                        if (loopie.PlayerIndex == playerHandModel.PlayerModel.PlayerIndex) {
                             areAnyLoopiesMine = true;
                             break;
                         }
                     }
 
                     return new PlayerMenuModel<PlayerHandModel>(
-                        playerModel,
-                        playerModel,
-                        playerModel.SceneGraph,
-                        playerModel.HandPosition,
+                        playerHandModel,
+                        playerHandModel,
+                        playerHandModel.SceneGraph,
+                        playerHandModel.HandPosition,
                         new MenuItem<PlayerHandModel>(
                             areAnyLoopiesMine ? "Delete\nmy sounds" : "Delete\nALL sounds", 
                             model => {
-                                foreach (Loopie loopie in model.Loopies) {
-                                    if (!areAnyLoopiesMine || loopie.PlayerIndex == model.PlayerIndex) {
+                                foreach (Loopie loopie in model.HolofunkModel.Loopies) {
+                                    if (!areAnyLoopiesMine || loopie.PlayerIndex == model.PlayerModel.PlayerIndex) {
                                         model.RemoveLoopie(loopie);
                                     }
                                 }
                             }),
                         new MenuItem<PlayerHandModel>(
-                            playerModel.IsRecordingWAV ? "Stop WAV\nrecording" : "Start WAV\nrecording",
+                            playerHandModel.PlayerModel.IsRecordingWAV ? "Stop WAV\nrecording" : "Start WAV\nrecording",
                             model => {
-                                if (model.IsRecordingWAV) {
+                                if (model.PlayerModel.IsRecordingWAV) {
                                     model.StopRecordingWAV();
                                 }
                                 else {
@@ -347,31 +347,31 @@ namespace Holofunk
                                 }
                             }),
                         new MenuItem<PlayerHandModel>("Switch\naudience\nview",
-                            model => {
-                                model.SecondaryView = (model.SecondaryView == HolofunkView.Secondary
+                            model => model.HolofunkModel.SecondaryView = (model.HolofunkModel.SecondaryView == HolofunkView.Secondary
                                     ? HolofunkView.Primary
-                                    : HolofunkView.Secondary);
-                            }),
+                                    : HolofunkView.Secondary)),
                         new MenuItem<PlayerHandModel>("Clear mike\neffects",
-                            model => {
-                                model.MicrophoneParameters.ShareAll(AllEffects.CreateParameterMap());
-                            }),
+                            model => model.PlayerModel.MicrophoneParameters.ShareAll(AllEffects.CreateParameterMap())),
                         new MenuItem<PlayerHandModel>("Clear loop\neffects",
-                            model => {
-                                model.ShareLoopParameters(AllEffects.CreateParameterMap());
-                            }),
+                            model => model.ShareLoopParameters(AllEffects.CreateParameterMap())),
+                        new MenuItem<PlayerHandModel>("Advance\nslide",
+                            model => model.HolofunkModel.AdvanceSlide(+1)),
+                        new MenuItem<PlayerHandModel>(playerHandModel.HolofunkModel.SlideVisible ? "Hide\nslide" : "Show\nslide",
+                            model => model.HolofunkModel.SlideVisible = !model.HolofunkModel.SlideVisible),
+                        new MenuItem<PlayerHandModel>("Rewind\nslide",
+                            model => model.HolofunkModel.AdvanceSlide(-1)),
                         new MenuItem<PlayerHandModel>("Swap\nplayers",
-                            model => {
-                                model.Kinect.SwapPlayers();
-                            }),
-                        new MenuItem<PlayerHandModel>("+10 BPM", model => model.RequestedBPM += 10,
-                            enabledFunc: model => model.Loopies.Count == 0),
-                        new MenuItem<PlayerHandModel>("-10 BPM", model => model.RequestedBPM -= 10,
-                            enabledFunc: model => model.Loopies.Count == 0),
+                            model => model.HolofunkModel.Kinect.SwapPlayers()),
+                        new MenuItem<PlayerHandModel>("+10 BPM", model => model.HolofunkModel.RequestedBPM += 10,
+                            enabledFunc: model => model.HolofunkModel.Loopies.Count == 0),
+                        new MenuItem<PlayerHandModel>("-10 BPM", model => model.HolofunkModel.RequestedBPM -= 10,
+                            enabledFunc: model => model.HolofunkModel.Loopies.Count == 0)
+                            /*
                         new MenuItem<PlayerHandModel>("+1 BPM", model => model.RequestedBPM += 1,
                             enabledFunc: model => model.Loopies.Count == 0),
                         new MenuItem<PlayerHandModel>("-1 BPM", model => model.RequestedBPM -= 1,
                             enabledFunc: model => model.Loopies.Count == 0)
+                             */
                         );
                 },
                 exitConversionFunc: model => model.ExtractAndDetach()
