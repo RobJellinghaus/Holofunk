@@ -176,8 +176,6 @@ namespace Holofunk
                             m_lastVideoFrame = videoImage;
                         }
                     }
-
-                    Spam.TopLine2 = "Total renders: " + s_totalRenders + "; duplicate setdatas avoided: " + s_redundantSetDatas;
                 }
                 else {
                     // ain't nothing to show
