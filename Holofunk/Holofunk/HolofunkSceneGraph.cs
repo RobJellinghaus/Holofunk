@@ -166,7 +166,7 @@ namespace Holofunk
                 long freeVideoMB = holofunkModel.VideoAllocator.TotalFreeListSpace / 1024 / 1024;
 
                 m_statusText.Text.AppendFormat(
-                    "Time: {10}:{11:02} | BPM: {0} | Update FPS: {1} | Kinect FPS: {2} | CPU: {3}%\nAudio: {4}/{5}MB | Video: {6}/{7}MB | Free streams: {8}\n{9}\n",
+                    "Time: {10}:{11:D2} | BPM: {0} | Update FPS: {1} | Kinect FPS: {2} | CPU: {3}%\nAudio: {4}/{5}MB | Video: {6}/{7}MB | Free streams: {8}\n{9}\n",
                     Clock.BPM,
                     frameRateMsec == 0 ? 0 : Math.Floor((1000f / frameRateMsec) * 10) / 10,
                     kinect.m_totalFrames / Clock.Now.Seconds,
