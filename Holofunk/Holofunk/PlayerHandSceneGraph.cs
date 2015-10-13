@@ -92,6 +92,7 @@ namespace Holofunk
             m_handNode.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored | SecondaryViewOption.TextureMirrored);
 
             m_effectLabelGroup = new GroupNode(m_handGroup, Transform.Identity, "Effect label group");
+            m_effectLabelGroup.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored);
 
             m_effectLabels = MakeEffectLabels(m_effectLabelGroup);
 

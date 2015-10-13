@@ -46,14 +46,17 @@ namespace Holofunk
                 Vector2.Zero, new Vector2(MagicNumbers.EffectSpaceBoundingCircleMultiple * (1 / MagicNumbers.EffectSpaceBoundingCircleSize)));
             m_boundingCircleNode.Color = new Color(0, 0, 0, 0);
             m_boundingCircleNode.Origin = new Vector2(0.5f);
+            m_boundingCircleNode.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored);
 
             m_effectKnobLineNode = new LineNode(RootNode, "effect line");
             m_effectKnobLineNode.Color = new Color(0, 0, 0, 0);
+            m_effectKnobLineNode.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored);
 
             m_effectKnobNode = new SpriteNode(RootNode, "effect knob", parent.Content.FilledCircle);
             m_effectKnobNode.Origin = new Vector2(0.5f);
             m_effectKnobNode.LocalTransform = new Transform(Vector2.Zero, new Vector2(MagicNumbers.EffectSpaceKnobMultiple));
             m_effectKnobNode.Color = new Color(0, 0, 0, 0);
+            m_effectKnobNode.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored);
         }
 
         internal ASceneNode BoundingCircleNode { get { return m_boundingCircleNode; } }

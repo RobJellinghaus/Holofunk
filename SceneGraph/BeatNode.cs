@@ -117,11 +117,6 @@ namespace Holofunk.SceneGraphs
                 return;
             }
 
-            if (view == HolofunkView.Secondary) {
-                // no dots for you, audience
-                return;
-            }
-
             Transform combinedTransform = parentTransform.CombineWith(LocalTransform);
 
             // How many measures?

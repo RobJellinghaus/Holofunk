@@ -58,7 +58,7 @@ namespace Holofunk
             object nativeWindow = Window.NativeWindow;
             System.Windows.Forms.Form asForm = nativeWindow as System.Windows.Forms.Form;
 
-            Window.Title = "Holofunk Pre-Alpha";
+            Window.Title = "Holofunk Alpha";
             Window.AllowUserResizing = true;
         }
 
