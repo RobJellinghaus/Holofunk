@@ -222,7 +222,7 @@ namespace Holofunk
 
             m_holofunkBass.SetBaseForm((Form)renderer.Window.NativeWindow);
 
-            Window.Title = "Holofunk Pre-Alpha";
+            Window.Title = "Holofunk Alpha";
             Window.AllowUserResizing = true;
 
             object nativeWindow = Window.NativeWindow;

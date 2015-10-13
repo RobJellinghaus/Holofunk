@@ -74,7 +74,7 @@ namespace Holofunk
             // semi-transparent heads, hopefully this will make them seem "less interactive"
             m_headNode.Color = new Color(0.7f, 0.7f, 0.7f, 0.7f);
             m_headNode.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored | SecondaryViewOption.SecondTexture);
-            m_headNode.SecondaryTexture = parent.Content.HollowFace0;
+            m_headNode.SecondaryTexture = parent.Content.Dot;
 
             // Make a faded mike signal that sticks to the head.
             m_headMikeSignal = new TrackNode(
@@ -86,7 +86,7 @@ namespace Holofunk
                 null, 
                 true,
                 () => Audio.LevelRatio(Channel),
-                () => new Color(127, 0, 0, 127),
+                () => new Color(63, 0, 0, 63),
                 () => Color.White,
                 () => 0,
                 () => 0,
@@ -127,17 +127,6 @@ namespace Holofunk
             HolofunKinect kinect,
             Moment now)
         {
-            float averageMikeLevel = AverageLevelRatio.Average;
-            if (averageMikeLevel < 0.4f) {
-                m_headNode.SecondaryTexture = Content.HollowFace0;
-            }
-            else if (averageMikeLevel < 0.8f) {
-                m_headNode.SecondaryTexture = Content.HollowFace1;
-            }
-            else {
-                m_headNode.SecondaryTexture = Content.HollowFace2;
-            }
-
             m_headGroup.LocalTransform = new Transform(
                 kinect.GetJointViewportPosition(PlayerIndex, JointType.Head) + MagicNumbers.ScreenHandAdjustment,
                 new Vector2(1f));

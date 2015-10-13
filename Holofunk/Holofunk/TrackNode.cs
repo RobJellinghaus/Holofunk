@@ -122,7 +122,7 @@ namespace Holofunk
                 initialBeatFunc,
                 beatColorFunc);
 
-            m_beatNode.SetSecondaryViewOption(SecondaryViewOption.Hidden);
+            m_beatNode.SetSecondaryViewOption(SecondaryViewOption.PositionMirrored);
 
             // we always mirror track node position
             SetSecondaryViewOption(SecondaryViewOption.PositionMirrored);
