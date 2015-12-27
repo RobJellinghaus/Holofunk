@@ -120,14 +120,14 @@ namespace Holofunk
             { 
                 m_slide_1989_tuib, 
                 m_slide_BeardymanTED, 
-                m_slide_reggietoys, 
-                m_slide_castle_looping, 
+                //m_slide_reggietoys, 
+                //m_slide_castle_looping, 
                 m_slide_beardy_monkey_jazz, 
                 m_slide_beardyandme, 
                 m_slide_holofunkdesign, 
                 m_slide_holofunkfnf,
-                m_slide_loopfest,
-                m_slide_environment,
+                //m_slide_loopfest,
+                //m_slide_environment,
                 m_slide_holofunkcom,
             };
         }

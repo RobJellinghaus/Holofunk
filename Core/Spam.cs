@@ -17,6 +17,8 @@ namespace Holofunk.Core
 
         internal void WriteLine(string s)
         {
+            return;
+
             const int chunkSize = 100;
             const int numChunks = 20;
 

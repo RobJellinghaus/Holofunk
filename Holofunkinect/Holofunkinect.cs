@@ -261,11 +261,7 @@ namespace Holofunk.Kinect
                         bodyFrame.Dispose();
                         bodyFrame = null;                
 
-#if GREEN_SCREEN_MAPPING_DEPTH_TO_COLOR_RESOLUTION
-                        GreenScreenMappingDepthToColorResolution(ref depthFrame, colorFrame, ref bodyIndexFrame, bodyFrame, depthWidth);
-#else
                         GreenScreenMappingDepthToColorSplats(ref depthFrame, ref colorFrame, ref bodyIndexFrame, depthWidth, depthHeight, colorWidth, colorHeight);
-#endif
                     }
                 }
             }
@@ -301,113 +297,6 @@ namespace Holofunk.Kinect
                 }
             }
         }
-
-#if false
-        void GreenScreenMappingDepthToColorResolution(ref DepthFrame depthFrame, ColorFrame colorFrame, ref BodyIndexFrame bodyIndexFrame, int depthWidth)
-        {
-            m_stopwatch.Restart();
-
-            using (KinectBuffer depthFrameData = depthFrame.LockImageBuffer()) {
-                m_coordinateMapper.MapColorFrameToDepthSpaceUsingIntPtr(
-                    depthFrameData.UnderlyingBuffer,
-                    depthFrameData.Size,
-                    m_colorToDepthSpacePoints);
-            }
-
-            m_depthMapTimer.Update(m_stopwatch.ElapsedMilliseconds);
-            m_stopwatch.Restart();
-
-            // We're done with the DepthFrame 
-            depthFrame.Dispose();
-            depthFrame = null;
-
-            lock (m_displayPixels) { // [KinectThread] avoid racing display buffer refresh with render (can cause missing images)
-
-                unsafe {
-#if COPY_ALL_ZERO_NON_PLAYER
-                    fixed (byte* colorFrameDataPtr = &m_displayTexture[0]) {
-                        colorFrame.CopyConvertedFrameDataToIntPtr(new IntPtr(colorFrameDataPtr), (uint)m_displayTexture.Length, ColorImageFormat.Bgra);
-                    }
-#elif COPY_PLAYER
-                    Array.Clear(m_displayPixels, 0, m_displayPixels.Length);
-                    fixed (byte* colorFrameDataPtr = &m_colorFrameData[0]) {
-                        colorFrame.CopyConvertedFrameDataToIntPtr(new IntPtr(colorFrameDataPtr), (uint)m_colorFrameData.Length, ColorImageFormat.Bgra);
-                    }
-#endif
-                }
-
-                // we're done with color frame
-                colorFrame.Dispose();
-                colorFrame = null;
-
-                m_colorCopyTimer.Update(m_stopwatch.ElapsedMilliseconds);
-                m_stopwatch.Restart();
-
-                // We'll access the body index data directly to avoid a copy
-                using (KinectBuffer bodyIndexData = bodyIndexFrame.LockImageBuffer()) {
-                    unsafe {
-                        byte* bodyIndexDataPointer = (byte*)bodyIndexData.UnderlyingBuffer;
-                        uint bodyIndexDataLength = bodyIndexData.Size;
-
-                        int colorMappedToDepthPointCount = m_colorToDepthSpacePoints.Length;
-
-                        fixed (DepthSpacePoint* colorMappedToDepthPointsPointer = m_colorToDepthSpacePoints) {
-                            fixed (byte* bitmapPixelsBytePointer = &m_displayPixels[0]) {
-                                fixed (byte* sourcePixelsBytePointer = &m_colorFrameData[0]) {
-                                    uint* bitmapPixelsPointer = (uint*)bitmapPixelsBytePointer;
-                                    uint* sourcePixelsPointer = (uint*)sourcePixelsBytePointer;
-
-                                    // Loop over each row and column of the color image
-                                    // Zero out any pixels that don't correspond to a body index
-                                    for (int colorIndex = 0; colorIndex < colorMappedToDepthPointCount; ++colorIndex) {
-                                        float colorMappedToDepthX = colorMappedToDepthPointsPointer[colorIndex].X;
-                                        float colorMappedToDepthY = colorMappedToDepthPointsPointer[colorIndex].Y;
-
-                                        int depthX = (int)(colorMappedToDepthX + 0.5f);
-                                        int depthY = (int)(colorMappedToDepthY + 0.5f);
-
-                                        // If the point is not valid, there is no body index there.
-                                        int depthIndex = (depthY * depthWidth) + depthX;
-
-                                        // If we are tracking a body for the current pixel, do not zero out the pixel
-                                        if (depthIndex >= 0 && depthIndex < bodyIndexDataLength && bodyIndexDataPointer[depthIndex] != 0xff) {
-#if COPY_ALL_ZERO_NON_PLAYER
-                                            continue;
-#elif COPY_PLAYER
-                                            bitmapPixelsPointer[colorIndex] = sourcePixelsPointer[colorIndex];
-#endif
-                                        }
-
-#if COPY_ALL_ZERO_NON_PLAYER
-                                        bitmapPixelsPointer[colorIndex] = 0;
-#endif
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Done with BodyIndexFrame
-                bodyIndexFrame.Dispose();
-                bodyIndexFrame = null;
-            }
-
-            m_colorScanTimer.Update(m_stopwatch.ElapsedMilliseconds);
-            m_stopwatch.Restart();
-
-            m_displayTexture.SetData(m_displayPixels);
-
-            m_textureSetDataTimer.Update(m_stopwatch.ElapsedMilliseconds);
-            m_stopwatch.Restart();
-
-            Spam.TopLine1 = string.Format("depth map: {0} msec; color copy: {1} msec; color scan: {2} msec; texture set: {3} msec",
-                m_depthMapTimer.Average,
-                m_colorCopyTimer.Average,
-                m_colorScanTimer.Average,
-                m_textureSetDataTimer.Average);
-        }
-#endif
 
         void GreenScreenMappingDepthToColorSplats(ref DepthFrame depthFrame, ref ColorFrame colorFrame, ref BodyIndexFrame bodyIndexFrame, int depthWidth, int depthHeight, int colorWidth, int colorHeight)
         {
