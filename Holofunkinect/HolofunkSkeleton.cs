@@ -185,7 +185,7 @@ namespace Holofunk.Kinect
                 && handToHead.LengthSquared() < handToChest.LengthSquared()) {
                 m_pose = ArmPose.AtMouth;
             }
-            else if (handToUpperChest.LengthSquared() < headToUpperChest.LengthSquared()) {
+            else if (handToUpperChest.LengthSquared() < headToUpperChest.LengthSquared() * 1.5f) {
                 m_pose = ArmPose.AtChest;
             }
             else {
