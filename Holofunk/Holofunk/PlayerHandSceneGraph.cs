@@ -85,7 +85,8 @@ namespace Holofunk
                 // TODO: revive beat meter on current recording
                 () => new Duration<Sample>(0),
                 () => 0,
-                () => m_handMikeSignalColor);
+                () => m_handMikeSignalColor,
+                () => 1f);
 
             m_handNode = new SpriteNode(m_handGroup, isRight ? "Right Hand" : "Left Hand", null);
             m_handNode.Origin = new Vector2(0.5f);

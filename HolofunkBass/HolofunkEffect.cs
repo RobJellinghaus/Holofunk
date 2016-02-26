@@ -86,7 +86,7 @@ namespace Holofunk
 
     public class VolumeEffect : SimpleBassEffect
     {
-        static ParameterDescription s_parameter = new ParameterDescription(typeof(VolumeEffect), "volume", 0, 0.5f, 0.7f, 1, absolute: true);
+        static ParameterDescription s_parameter = new ParameterDescription(typeof(VolumeEffect), "volume", 0, 0.5f, 0.6f, 1, absolute: true);
 
         public static ParameterDescription Volume { get { return s_parameter; } }
 

@@ -52,8 +52,14 @@ namespace Holofunk
         // Ditto for the beat color
         readonly Func<Color> m_beatColorFunc;
 
+        // Ditto for the video rate; 1 = full rate video; 0.1 = one out of every ten frames video
+        readonly Func<float> m_videoRateFunc;
+
         // The node representing our beats
         BeatNode m_beatNode;
+
+        // The current video rate counter; when this goes over 1, we update the video frame
+        float m_videoRateCounter;
 
         // The last video frame Slice we displayed
         Slice<Frame, byte> m_lastVideoFrame;
@@ -85,7 +91,8 @@ namespace Holofunk
             Func<Color> videoColorFunc,
             Func<Duration<Sample>> trackDurationFunc,
             Func<int> initialBeatFunc,
-            Func<Color> beatColorFunc)
+            Func<Color> beatColorFunc,
+            Func<float> videoRateFunc)
             : base(parent, transform, label)
         {
             m_id = id;
@@ -94,6 +101,7 @@ namespace Holofunk
             m_circleColorFunc = circleColorFunc;
             m_videoColorFunc = videoColorFunc;
             m_beatColorFunc = beatColorFunc;
+            m_videoRateFunc = videoRateFunc;
 
             // create this first so it is Z-ordered behind m_soundNode
             m_selectNode = new SpriteNode(this, "TrackHighlight", content.FilledCircle);
@@ -159,27 +167,31 @@ namespace Holofunk
 
         protected override void DoRender(Moment now, SharpDX.Toolkit.Graphics.GraphicsDevice graphicsDevice, ISpriteBatch spriteBatch, TextureContent content, HolofunkView view, Transform parentTransform, int depth)
         {
-            lock (this) {
-                if (VideoStream != null) {
-                    s_totalRenders++;
+            m_videoRateCounter += m_videoRateFunc();
+            if (m_videoRateCounter >= 1f) {
+                m_videoRateCounter -= 1f;
+                lock (this) {
+                    if (VideoStream != null) {
+                        s_totalRenders++;
 
-                    Slice<Frame, byte> videoImage = VideoStream.GetClosestSliver(now.Time + MagicNumbers.LatencyCompensationDuration);
+                        Slice<Frame, byte> videoImage = VideoStream.GetClosestSliver(now.Time + MagicNumbers.LatencyCompensationDuration);
 
-                    if (!videoImage.IsEmpty()) {
-                        if (videoImage.Equals(m_lastVideoFrame)) {
-                            // skip the setData
-                            s_redundantSetDatas++;
-                        }
-                        else {
-                            // blast the data in there with a single pointer-based memory copy
-                            videoImage.RawAccess((intptr, size) => m_videoNode.Texture.SetData(graphicsDevice, new DataPointer(intptr, size), arraySlice: 0, mipSlice: 0));
-                            m_lastVideoFrame = videoImage;
+                        if (!videoImage.IsEmpty()) {
+                            if (videoImage.Equals(m_lastVideoFrame)) {
+                                // skip the setData
+                                s_redundantSetDatas++;
+                            }
+                            else {
+                                // blast the data in there with a single pointer-based memory copy
+                                videoImage.RawAccess((intptr, size) => m_videoNode.Texture.SetData(graphicsDevice, new DataPointer(intptr, size), arraySlice: 0, mipSlice: 0));
+                                m_lastVideoFrame = videoImage;
+                            }
                         }
                     }
-                }
-                else {
-                    // ain't nothing to show
-                    m_videoNode.Texture.SetData(graphicsDevice, BlankTextureData);
+                    else {
+                        // ain't nothing to show
+                        m_videoNode.Texture.SetData(graphicsDevice, BlankTextureData);
+                    }
                 }
             }
 

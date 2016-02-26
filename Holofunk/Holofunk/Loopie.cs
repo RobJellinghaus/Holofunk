@@ -134,7 +134,8 @@ namespace Holofunk
                     ? new Color((byte)0xFF, (byte)0, (byte)0, (byte)0xFF)
                     : m_condition == LoopieCondition.Mute
                     ? HolofunkSceneGraph.MuteColor
-                    : s_colors[m_id % s_colors.Length]);
+                    : s_colors[m_id % s_colors.Length],
+                () => (float)(MagicNumbers.MaxStreamCount + 1 - model.Loopies.Count) / MagicNumbers.MaxStreamCount);
 
             m_track = new Track(m_model.Bass, m_id, m_model[m_playerIndex].MicrophoneParameters, m_audioStream);
         }

@@ -90,7 +90,8 @@ namespace Holofunk
                 () => Color.White,
                 () => 0,
                 () => 0,
-                () => new Color(127, 0, 0, 127));
+                () => new Color(127, 0, 0, 127),
+                () => 1f);
 
             m_leftHandSceneGraph = new PlayerHandSceneGraph(this, false);
             m_rightHandSceneGraph = new PlayerHandSceneGraph(this, true);

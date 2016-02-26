@@ -95,6 +95,9 @@ namespace Holofunk
 
         #region Musical constants
 
+        // Max number of streams.
+        internal const int MaxStreamCount = 20;
+
         // 4/4 time (actually, 4/_ time, we don't care about the note duration)
         internal const int BeatsPerMeasure = 4;
 
@@ -220,7 +223,7 @@ namespace Holofunk
             List<IGameSystem> list = GameSystems.ToList();
             HolofunkRenderer renderer = (HolofunkRenderer)list[0];
 
-            m_holofunkBass.SetBaseForm((Form)renderer.Window.NativeWindow);
+            m_holofunkBass.SetBaseForm((Form)renderer.Window.NativeWindow, MagicNumbers.MaxStreamCount);
 
             Window.Title = "Holofunk Alpha";
             Window.AllowUserResizing = true;
