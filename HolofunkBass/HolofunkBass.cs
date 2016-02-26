@@ -62,9 +62,9 @@ namespace Holofunk
 
         #endregion
 
-        public void SetBaseForm(Form baseForm)
+        public void SetBaseForm(Form baseForm, int streamPoolCapacity)
         {
-            m_asio.SetBaseForm(baseForm);
+            m_asio.SetBaseForm(baseForm, streamPoolCapacity);
         }
 
         /// <summary>Set up and start the ASIO subsystem running.</summary>

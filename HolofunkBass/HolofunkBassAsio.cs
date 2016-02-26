@@ -284,10 +284,8 @@ namespace Holofunk
             m_wavEncoder = null;
         }
 
-        internal void SetBaseForm(Form baseForm)
+        internal void SetBaseForm(Form baseForm, int streamPoolCapacity)
         {
-            ////////////////////// STREAM POOL PREALLOCATION
-            const int streamPoolCapacity = 20;
             m_streamPool = new BassStreamPool(streamPoolCapacity, baseForm);
             m_baseForm = baseForm;
         }
