@@ -16,3 +16,4 @@ Holofunk/Holofunk/bin/x64/Release/
 *.sdf
 FNATest/bin/
 FNATest/obj/
+*.opendb
