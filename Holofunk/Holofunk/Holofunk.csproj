@@ -92,6 +92,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Bass.Net.dll</HintPath>
     </Reference>
+    <Reference Include="FNA">
+      <HintPath>..\..\FNALib\FNA.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Kinect, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Microsoft.Kinect.dll</HintPath>
