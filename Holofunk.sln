@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40121.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateMachine", "StateMachine\StateMachine.csproj", "{D4036361-B824-48E8-895A-64361498D8D8}"
 EndProject
@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BF7D67
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BassVst", "BassVst\BassVst.vcxproj", "{E0B09A96-4F7C-409E-AB30-0B06D9CC32BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNATest", "FNATest\FNATest.csproj", "{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,6 +221,30 @@ Global
 		{E0B09A96-4F7C-409E-AB30-0B06D9CC32BA}.Release|x86.ActiveCfg = Release|Win32
 		{E0B09A96-4F7C-409E-AB30-0B06D9CC32BA}.Release|x86.Build.0 = Release|Win32
 		{E0B09A96-4F7C-409E-AB30-0B06D9CC32BA}.Release|Xbox 360.ActiveCfg = Release|Win32
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|Win32.Build.0 = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|x64.Build.0 = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|x86.Build.0 = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|Xbox 360.ActiveCfg = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Debug|Xbox 360.Build.0 = Debug|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|Win32.ActiveCfg = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|Win32.Build.0 = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|x64.ActiveCfg = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|x64.Build.0 = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|x86.ActiveCfg = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|x86.Build.0 = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|Xbox 360.ActiveCfg = Release|Any CPU
+		{D16D6B6E-CED2-4736-9E05-9C3FDDA4360E}.Release|Xbox 360.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
