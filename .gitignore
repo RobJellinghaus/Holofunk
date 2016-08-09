@@ -14,3 +14,5 @@ Holofunk/Holofunk/bin/x64/Release/TextureContent/HollowFace1.png
 Holofunk/Holofunk/bin/x64/Release/
 *.opensdf
 *.sdf
+FNATest/bin/
+FNATest/obj/
