@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
+using Color = Microsoft.Xna.Framework.Color;
+using System;
 using System.Windows.Forms;
 
 namespace FNATest
 {
-    static class Program
+    class Program
     {
         /// <summary>
         /// The main entry point for the application.

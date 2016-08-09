@@ -1,20 +1,119 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using Microsoft.Xna.Framework;
+using Color = Microsoft.Xna.Framework.Color;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+/* Good nice FNA Stuff */
+using SDL2;
+using System;
+using System.Runtime.InteropServices;
 
 namespace FNATest
 {
+    public class FNATestGame : Game
+    {
+        GraphicsDeviceManager _manager;
+
+        public FNATestGame()
+        {
+            _manager = new GraphicsDeviceManager(this);
+            _manager.PreferredBackBufferWidth = 800;
+            _manager.PreferredBackBufferHeight = 600;
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(new Color(128, 128, 0, 255));
+        }
+    }
+
     public partial class Form1 : Form
     {
+        // thanks to https://gist.github.com/flibitijibibo/cf282bfccc1eaeb47550
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr SetWindowPos(
+            IntPtr handle,
+            IntPtr handleAfter,
+            int x,
+            int y,
+            int cx,
+            int cy,
+            uint flags
+        );
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr SetParent(IntPtr child, IntPtr newParent);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr ShowWindow(IntPtr handle, int command);
+
         public Form1()
         {
+            Size = new Size(800, 600);
+
+            FormClosing += new FormClosingEventHandler(WindowClosing);
+
             InitializeComponent();
+
+            // start game
+            {
+                new Thread(GameThread).Start();
+
+                while (!_gameStarted)
+                {
+                    Thread.Sleep(10);
+                }
+            }
+
+            Panel gamePanel = new Panel();
+            gamePanel.Bounds = System.Drawing.Rectangle.FromLTRB(0, 0, ClientSize.Width, ClientSize.Height);
+            gamePanel.Dock = DockStyle.Fill;
+            Controls.Add(gamePanel);
+
+            // set window
+            {
+                _game.Window.IsBorderlessEXT = true;
+
+                SDL.SDL_SysWMinfo info = new SDL.SDL_SysWMinfo();
+                SDL.SDL_GetWindowWMInfo(_game.Window.Handle, ref info);
+
+                IntPtr winHandle = info.info.win.window;
+
+                SetWindowPos(
+                    winHandle,
+                    Handle,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0x0401 // NOSIZE | SHOWWINDOW
+
+                );
+
+                SetParent(winHandle, gamePanel.Handle);
+
+                ShowWindow(winHandle, 1); // SHOWNORMAL
+            }
+        }
+
+        private static FNATestGame _game;
+        private static bool _gameStarted;
+
+        private void WindowClosing(object sender, FormClosingEventArgs e)
+        {
+
+            _game.Exit();
+        }
+
+        private static void GameThread()
+        {
+            using (_game = new FNATestGame())
+            {
+                _gameStarted = true;
+                _game.Run();
+            }
+
         }
     }
 }
