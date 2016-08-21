@@ -73,7 +73,7 @@ namespace Holofunk.SceneGraphs
             float length = (float)Math.Sqrt(diff.X * diff.X + diff.Y * diff.Y) / 2;
 
             // Use NonPremultiplied, as our sprite textures are not premultiplied
-            spriteBatch.Begin(SpriteSortMode.Deferred, spriteBatch.GraphicsDevice.BlendStates.NonPremultiplied);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 
             spriteBatch.Draw(
                 content.TinyDot,

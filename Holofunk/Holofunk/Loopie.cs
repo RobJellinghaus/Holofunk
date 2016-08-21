@@ -120,7 +120,7 @@ namespace Holofunk
                     ? HolofunkSceneGraph.MuteColor
                     : s_colors[m_id % s_colors.Length],
                 () => m_condition == LoopieCondition.Mute
-                    ? new Color((byte)0x80) // half transparent
+                    ? new Color(0x80, 0x80, 0x80, 0x80) // half transparent
                     : Color.White,
                 () => {
                     if (m_condition == LoopieCondition.Record) {
@@ -222,7 +222,6 @@ namespace Holofunk
             m_currentRecordingBeatCount = TrackBeatLength(m_audioStream.DiscreteDuration);
             if (prevBeatCount != m_currentRecordingBeatCount) {
                 // breakpoint here
-                int foo = 0;
             }
 
             bool done = false;

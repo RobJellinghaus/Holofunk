@@ -19,6 +19,7 @@ namespace Holofunk.Core
         {
             return;
 
+            /*
             const int chunkSize = 100;
             const int numChunks = 20;
 
@@ -29,6 +30,7 @@ namespace Holofunk.Core
 
                  Output.Add(s);
             }
+            */
         }
 
     }

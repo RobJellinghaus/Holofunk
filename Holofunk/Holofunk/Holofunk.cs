@@ -22,6 +22,7 @@ namespace Holofunk
 {
     // sort out our WinForms vs. XNA Name Battle
     using SysColor = System.Drawing.Color;
+    using Color = Microsoft.Xna.Framework.Color;
     using HolofunkMachine = StateMachineInstance<LoopieEvent>;
 
     /// <summary>
@@ -176,7 +177,6 @@ namespace Holofunk
             Content.RootDirectory = "TextureContent";
 
             m_graphicsDeviceManager = new GraphicsDeviceManager(this);
-            m_graphicsDeviceManager.DeviceCreationFlags = SharpDX.Direct3D11.DeviceCreationFlags.Debug;
             //m_graphicsDeviceManager.IsFullScreen = true;
             //m_graphicsDeviceManager.PreferredFullScreenOutputIndex = 0;
             m_graphicsDeviceManager.SynchronizeWithVerticalRetrace = false;
@@ -220,7 +220,7 @@ namespace Holofunk
 
             base.Initialize();
 
-            List<IGameSystem> list = GameSystems.ToList();
+            // oh dear
             HolofunkRenderer renderer = (HolofunkRenderer)list[0];
 
             m_holofunkBass.SetBaseForm((Form)renderer.Window.NativeWindow, MagicNumbers.MaxStreamCount);
@@ -333,7 +333,7 @@ namespace Holofunk
         {
             base.Draw(gameTime);
 
-            Render(Now, GraphicsDevice, m_spriteBatch, gameTime, HolofunkView.Primary, SharpDX.Color.Black);
+            Render(Now, GraphicsDevice, m_spriteBatch, gameTime, HolofunkView.Primary, Color.Black);
         }
 
         internal void Render(Moment now, GraphicsDevice graphicsDevice, ISpriteBatch spriteBatch, GameTime gameTime, HolofunkView view, SharpDX.Color backgroundColor)
