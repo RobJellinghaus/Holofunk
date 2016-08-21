@@ -174,13 +174,6 @@
     <Content Include="TextureContent\2x2_filled_square.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <ToolkitFont Include="TextureContent\Arial16.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <Link>TextureContent\Arial16.xml</Link>
-    </ToolkitFont>
-    <Content Include="TextureContent\Arial16.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="TextureContent\EffectCircle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

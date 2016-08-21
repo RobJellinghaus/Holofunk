@@ -172,7 +172,7 @@ namespace Holofunk.Kinect
                 m_colorFrameData = new byte[colorWidth * colorHeight * BytesPerColorPixel];
 
                 m_displayPixels = new byte[colorWidth * colorHeight * BytesPerColorPixel];
-                m_displayTexture = Texture2D.New(m_graphicsDevice, colorWidth, colorHeight, new MipMapCount(1), PixelFormat.B8G8R8A8.UNorm);
+                m_displayTexture = new Texture2D(m_graphicsDevice, colorWidth, colorHeight, mipMap: true, format: SurfaceFormat.Color);
 
                 m_colorToDepthSpacePoints = new DepthSpacePoint[colorWidth * colorHeight];
                 m_depthToColorSpacePoints = new ColorSpacePoint[depthWidth * depthHeight];

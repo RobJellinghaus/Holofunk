@@ -23,7 +23,7 @@ namespace Holofunk.Core
         {
             if (!value) {
                 throw new HoloDebugException();
-                Debug.Assert(value);
+                // Debug.Assert(value);
             }
         }
 
@@ -33,7 +33,7 @@ namespace Holofunk.Core
         {
             if (!value) {
                 throw new HoloDebugException();
-                Debug.Assert(value, message);
+                // Debug.Assert(value, message);
             }
         }
     }

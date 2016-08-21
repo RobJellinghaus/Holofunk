@@ -76,6 +76,17 @@ namespace Holofunk.Core
             return (long)first == (long)second;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Time<TTime>
+                && ((Time<TTime>)obj) == this;
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)m_time;
+        }
+
         public static bool operator !=(Time<TTime> first, Time<TTime> second)
         {
             return (long)first != (long)second;
@@ -184,6 +195,17 @@ namespace Holofunk.Core
         public static Time<TTime> operator +(Time<TTime> first, Duration<TTime> second)
         {
             return new Time<TTime>((long)first + (long)second);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Duration<TTime>
+                && ((Duration<TTime>)obj) == this;
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)m_count;
         }
     }
 

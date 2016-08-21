@@ -166,7 +166,7 @@ namespace Holofunk
 
         public override Texture2D NewDynamicTexture(int width, int height)
         {
-            return Texture2D.New(m_device, width, height, (MipMapCount)1, PixelFormat.B8G8R8A8.UNorm, usage: SharpDX.Direct3D11.ResourceUsage.Dynamic);
+            return new Texture2D(m_device, width, height, mipMap: true, format: SurfaceFormat.Color);
         }
     }
 }

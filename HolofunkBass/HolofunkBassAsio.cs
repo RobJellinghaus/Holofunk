@@ -315,9 +315,11 @@ namespace Holofunk
                 }
             }
 
+            /*
             if (HolofunkBassAsio.UseCamelCrusher) {
                 LoadVstPlugin("CamelCrusher.dll");
             }
+            */
         }
 
         int ArrayIndexOf(string[] array, string s)

@@ -129,7 +129,7 @@ namespace Holofunk.SceneGraphs
             }
 
             // Use NonPremultiplied, as our sprite textures are not premultiplied
-            spriteBatch.Begin(SpriteSortMode.Deferred, spriteBatch.GraphicsDevice.BlendStates.NonPremultiplied);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 
             spriteBatch.Draw(
                 texture,

@@ -186,7 +186,7 @@ namespace Holofunk.SceneGraphs
             Spam.Graphics.WriteLine(new string(' ', depth * 4 + 4) + Label + ": beat " + beat + ", filledness " + filledness + ", destRect " + destRect.ToString());
 
             // Use NonPremultiplied, as our sprite textures are not premultiplied
-            spriteBatch.Begin(SpriteSortMode.Deferred, spriteBatch.GraphicsDevice.BlendStates.NonPremultiplied);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 
             Vector2 origin = new Vector2(0);
 
@@ -198,7 +198,7 @@ namespace Holofunk.SceneGraphs
                 color,
                 (float)((beat % 4 + 2) * Math.PI / 2),
                 origin,
-                SpriteEffects.FlipBoth,
+                SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically,
                 0);
 
             // now maybe draw a filled circle
@@ -213,7 +213,7 @@ namespace Holofunk.SceneGraphs
                 color,
                 (float)((beat % 4 + 2) * Math.PI / 2),
                 origin,
-                SpriteEffects.FlipBoth,
+                SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically,
                 0);
 
             spriteBatch.End();

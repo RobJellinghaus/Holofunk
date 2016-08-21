@@ -62,13 +62,13 @@ namespace Holofunk.SceneGraphs
             else if (Enabled) {
                 m_textNode.Color = Color.White;
                 m_spriteNode.Color = new Color((byte)0, (byte)0, (byte)0, (byte)128);
-                m_highlightSpriteNode.Color = new Color(0);
+                m_highlightSpriteNode.Color = new Color(0, 0, 0, 0);
             }
             else {
                 // dim text, no highlight
                 m_textNode.Color = new Color((byte)0x40, (byte)0x40, (byte)0x40, (byte)0x40);
                 m_spriteNode.Color = new Color((byte)0, (byte)0, (byte)0, (byte)128);
-                m_highlightSpriteNode.Color = new Color(0);
+                m_highlightSpriteNode.Color = new Color(0, 0, 0, 0);
             }
         }  
     }

@@ -26,7 +26,7 @@ namespace Holofunk.SceneGraphs
         void Begin(SpriteSortMode spriteSortMode, BlendState blendState);
 
         void Draw(
-            SharpDX.Direct3D11.ShaderResourceView texture,
+            Texture2D texture,
             Vector2 position,
             Rectangle? sourceRectangle,
             Color color,
@@ -37,7 +37,7 @@ namespace Holofunk.SceneGraphs
             float layerDepth);
 
         void Draw(
-            SharpDX.Direct3D11.ShaderResourceView texture,
+            Texture2D texture,
             Rectangle destRectangle,
             Rectangle? sourceRectangle,
             Color color,

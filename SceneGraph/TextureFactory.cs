@@ -57,13 +57,14 @@ namespace Holofunk.SceneGraphs
                     float dist3 = Math.Max(0, 1 - Vector2.Distance(new Vector2(1, 1), currentPoint));
 
                     Vector3 vectorSum = (v0 * dist0) + (v1 * dist1) + (v2 * dist2) + (v3 * dist3);
-                    Color color = new Color(vectorSum, 1.0f);
+                    Vector4 vectorSum1 = new Vector4(vectorSum, 1.0f);
+                    Color color = new Color(vectorSum1);
 
                     data[i + (j * (int)size.X)] = color;
                 }
             }
 
-            Texture2D ret = Texture2D.New(graphicsDevice, (int)size.X, (int)size.Y, new MipMapCount(1), PixelFormat.R8G8B8A8.UNorm);
+            Texture2D ret = new Texture2D(graphicsDevice, (int)size.X, (int)size.Y, mipMap: true, format: SurfaceFormat.Color);
             ret.SetData(data);
             return ret;
         }
