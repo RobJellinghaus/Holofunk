@@ -19,8 +19,8 @@ namespace Holofunk
         {
             using (HolofunkGame game = new HolofunkGame())
             {
-                var secondary = new HolofunkRenderer(game);
-                game.GameSystems.Add(secondary);
+                //var secondary = new HolofunkRenderer(game);
+                //game.GameSystems.Add(secondary);
 
                 game.Run();
             }

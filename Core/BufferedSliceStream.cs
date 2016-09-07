@@ -325,8 +325,6 @@ namespace Holofunk.Core
         /// <summary>
         /// Map the interval time to stream local time, and get the next slice of it.
         /// </summary>
-        /// <param name="interval"></param>
-        /// <returns></returns>
         public override Slice<TTime, TValue> GetNextSliceAt(Interval<TTime> interval)
         {
             Interval<TTime> firstMappedInterval = m_intervalMapper.MapNextSubInterval(interval);
@@ -444,6 +442,16 @@ namespace Holofunk.Core
 
                 action(new IntPtr(p), (int)src.Duration * src.SliverSize);
             }
+        }
+        /// <summary>
+        /// Invoke some underlying action with a T[] and offset.
+        /// </summary>
+        /// <remarks>
+        /// The action receives the underlying backing T[], an offset from the start of the T[], and a count of elements.
+        /// </remarks>
+        public static unsafe void RawAccess<TTime>(this Slice<TTime, byte> src, Action<byte[], Duration<TTime>, Duration<TTime>> action)
+        {
+            action(src.Buffer.Data, src.Offset, src.Duration);
         }
     }
 

@@ -54,7 +54,7 @@ namespace Holofunk
         /// when recording.</summary>
         readonly TrackNode m_handMikeSignal;
 
-        Color m_handMikeSignalColor = new Color(0);
+        Color m_handMikeSignalColor = new Color(0, 0, 0, 0);
 
         /// <summary>Is there a moment in the recent past when we showed the effect labels?</summary>
         /// <remarks>If so, we are progressively fading them out and we want to update their color.</remarks>
@@ -186,7 +186,7 @@ namespace Holofunk
 
             if (m_effectLabelShownMoment.HasValue) {
                 Duration<Sample> elapsed = now.Time - m_effectLabelShownMoment.Value.Time;
-                Color color = new Color(0);
+                Color color = new Color(0, 0, 0, 0);
                 if (elapsed > MagicNumbers.EffectLabelFadeDuration) {
                     m_effectLabelShownMoment = Option<Moment>.None;
                 }

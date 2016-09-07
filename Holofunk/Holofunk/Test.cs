@@ -30,7 +30,7 @@ namespace Holofunk
         {
             MockSpriteBatch batch = new MockSpriteBatch(Log);
 
-            Texture2D tex = Texture2D.New(m_device, 10, 10, PixelFormat.R8G8B8A8.SInt);
+            Texture2D tex = new Texture2D(m_device, 10, 10, mipMap: false, format: SurfaceFormat.Color);
 
             batch.Draw(tex, new Rectangle(20, 30, 20, 20), Color.AliceBlue);
 

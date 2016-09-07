@@ -168,7 +168,7 @@ namespace Holofunk
 
             foreach (Loopie loopie in m_touchedLoopies) {
                 loopie.Touched = false;
-                loopie.TouchedColor = new Color(0);
+                loopie.TouchedColor = new Color(0, 0, 0, 0);
             }
 
             m_touchedLoopies.Clear();

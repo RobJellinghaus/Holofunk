@@ -70,10 +70,10 @@ namespace Holofunk
             m_parent.Update(playerModel, kinect, now);
 
             bool isDragging = m_model.DragStartLocation.HasValue;
-            Color color = isDragging ? Color.White : new Color(0);
+            Color color = isDragging ? Color.White : new Color(0, 0, 0, 0);
 
             // cut alpha of bounding circle
-            m_boundingCircleNode.Color = new Color(color.ToRgba() & 0x60606060);
+            m_boundingCircleNode.Color = color * 0.5f;
             m_effectKnobLineNode.Color = color;
             m_effectKnobNode.Color = color;
 
