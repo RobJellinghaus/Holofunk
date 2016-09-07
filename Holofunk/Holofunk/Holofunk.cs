@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
@@ -129,9 +129,9 @@ namespace Holofunk
     /// <summary>The Holofunk, incarnate.</summary>
     /// <remarks>Implements all the main game logic, coordinates all major components, and basically
     /// gets the job done.</remarks>
-    public class Holofunk : Game
+    public class HolofunkGame : Game
     {
-        static Holofunk()
+        static HolofunkGame()
         {
             MagicNumbers.Initialize();
         }
@@ -168,7 +168,7 @@ namespace Holofunk
         // how large is our viewport
         Vector2 m_viewportSize;
 
-        public Holofunk() 
+        public HolofunkGame() 
         {
             m_clock = new Clock(MagicNumbers.InitialBpm, MagicNumbers.BeatsPerMeasure, HolofunkBassAsio.InputChannelCount);
 
@@ -221,26 +221,27 @@ namespace Holofunk
             base.Initialize();
 
             // oh dear
-            HolofunkRenderer renderer = (HolofunkRenderer)list[0];
 
-            m_holofunkBass.SetBaseForm((Form)renderer.Window.NativeWindow, MagicNumbers.MaxStreamCount);
+            //m_holofunkBass.SetBaseForm((Form)Window.Handle, MagicNumbers.MaxStreamCount);
 
             Window.Title = "Holofunk Alpha";
             Window.AllowUserResizing = true;
 
+            /*
             object nativeWindow = Window.NativeWindow;
             System.Windows.Forms.Form asForm = nativeWindow as System.Windows.Forms.Form;
             asForm.SetDesktopBounds(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             //asForm.SetDesktopBounds(100, 100, (int)(m_viewportSize.X * 2), (int)(m_viewportSize.Y * 2));
+            */
         }
 
         protected override void LoadContent()
         {
             base.LoadContent();
 
-            float scale = GraphicsDevice.BackBuffer.Height / m_viewportSize.Y;
+            float scale = GraphicsDevice.PresentationParameters.BackBufferHeight / m_viewportSize.Y;
             float scaledViewportWidth = m_viewportSize.X * scale;
-            float scaledViewportOffset = (GraphicsDevice.BackBuffer.Width - scaledViewportWidth) / 2;
+            float scaledViewportOffset = (GraphicsDevice.PresentationParameters.BackBufferWidth - scaledViewportWidth) / 2;
             Transform transform = new Transform(new Vector2(scaledViewportOffset, 0), new Vector2(scale)); 
             
             m_spriteBatch = new SpriteBatchWrapper(new SpriteBatch(GraphicsDevice), ViewportSize, transform);
@@ -336,7 +337,7 @@ namespace Holofunk
             Render(Now, GraphicsDevice, m_spriteBatch, gameTime, HolofunkView.Primary, Color.Black);
         }
 
-        internal void Render(Moment now, GraphicsDevice graphicsDevice, ISpriteBatch spriteBatch, GameTime gameTime, HolofunkView view, SharpDX.Color backgroundColor)
+        internal void Render(Moment now, GraphicsDevice graphicsDevice, ISpriteBatch spriteBatch, GameTime gameTime, HolofunkView view, Color backgroundColor)
         {
             graphicsDevice.Clear(backgroundColor);
 

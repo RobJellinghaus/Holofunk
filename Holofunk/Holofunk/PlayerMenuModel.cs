@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
@@ -18,6 +18,8 @@ using System.Linq;
 
 namespace Holofunk
 {
+    using Model = Holofunk.StateMachines.Model;
+    
     /// <summary>Base class for menu items; exposes only the label.</summary>
     /// <remarks>This lets the scene graph avoid having to deal with polymorphic Action types.
     /// (In other words, the scene graph only cares what the menu items look like, not what

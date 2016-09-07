@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
@@ -19,6 +19,8 @@ using System.Linq;
 
 namespace Holofunk
 {
+    using Model = Holofunk.StateMachines.Model;
+
     /// <summary>Scene graph elements specific to a menu invoked by an individual player.</summary>
     class PlayerMenuSceneGraph<TBaseModel> : SceneGraph
         where TBaseModel : Model
