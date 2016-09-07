@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 using Holofunk.Core;

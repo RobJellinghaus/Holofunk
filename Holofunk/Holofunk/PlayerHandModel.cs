@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
@@ -19,6 +19,7 @@ using System.Linq;
 namespace Holofunk
 {
     using HolofunkMachine = StateMachineInstance<LoopieEvent>;
+    using Model = Holofunk.StateMachines.Model;
 
     class PlayerHandModel : Model
     {

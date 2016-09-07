@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
@@ -18,6 +18,8 @@ using System.Linq;
 
 namespace Holofunk
 {
+    using Model = Holofunk.StateMachines.Model;
+
     /// <summary>The state of a player's time/space envelope interface.</summary>
     class PlayerTimeSpaceModel : Model
     {

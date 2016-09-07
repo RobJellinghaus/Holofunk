@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
@@ -17,7 +17,7 @@ namespace Holofunk
         /// <summary>The main entry point for the application.</summary>
         static void Main(string[] args)
         {
-            using (Holofunk game = new Holofunk())
+            using (HolofunkGame game = new HolofunkGame())
             {
                 var secondary = new HolofunkRenderer(game);
                 game.GameSystems.Add(secondary);

@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
@@ -15,24 +15,23 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Holofunk
 {
     /// <summary>Renders the secondary view.</summary>
-    public class HolofunkRenderer : GameWindowRenderer
+    public class HolofunkRenderer
     {
         SpriteBatch m_spriteBatch;
 
-        public HolofunkRenderer(Holofunk game, GameContext windowContext = null)
-            : base(game, windowContext)
+        public HolofunkRenderer(HolofunkGame game)
         {
             BackgroundColor = Color.Black;
             ForegroundColor = Color.Red;
-            Visible = true;
 
             /*
             PreferredBackBufferFormat = PixelFormat.R8G8B8A8.UNorm;
-             */
             PreferredBackBufferWidth = (int)(game.ViewportSize.X);
             PreferredBackBufferHeight = (int)(game.ViewportSize.Y);
+             */
         }
 
+        /*
         /// <summary>Initializes a new instance of the <see cref="MiniTriRenderer" /> class.</summary>
         protected override void LoadContent()
         {
@@ -42,11 +41,13 @@ namespace Holofunk
             Window.Title = "Holofunk Alpha";
             Window.AllowUserResizing = true;
         }
+        */
 
         public Color BackgroundColor { get; set; }
 
         public Color ForegroundColor { get; set; }
 
+        /*
         public override void Draw(GameTime gameTime)
         {
             if (m_spriteBatch == null) {
@@ -70,5 +71,6 @@ namespace Holofunk
                 ((Holofunk)Game).SecondaryView, 
                 BackgroundColor);
         }
+        */
     }
 }

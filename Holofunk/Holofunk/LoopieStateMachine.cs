@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
@@ -19,6 +19,8 @@ using System.Linq;
 namespace Holofunk
 
 {
+    using Model = Holofunk.StateMachines.Model;
+
     // Some states use the same model as their parents.  Other states change the model relative to
     // their parent states.
     // Either way, the State<TEvent, TModel, TBaseModel> class suffices, but is verbose.

@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2011-2014 by Rob Jellinghaus.                        //
+// Copyright (c) 2011-2016 by Rob Jellinghaus.                        //
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
@@ -158,7 +158,7 @@ namespace Holofunk
             m_selectNode.LocalTransform = new Transform(
                 m_soundNode.LocalTransform.Translation,
                 new Vector2(MagicNumbers.LoopieScale));
-            m_selectNode.Color = touched ? new Color(playerColor.R >> 1, playerColor.G >> 1, playerColor.B >> 1, (byte)0xA0) : new Color(0);
+            m_selectNode.Color = touched ? new Color(playerColor.R >> 1, playerColor.G >> 1, playerColor.B >> 1, (byte)0xA0) : new Color(0, 0, 0, 0);
 
             m_beatNode.Update(now);
         }
@@ -166,7 +166,7 @@ namespace Holofunk
         static int s_totalRenders = 0;
         static int s_redundantSetDatas = 0;
 
-        protected override void DoRender(Moment now, SharpDX.Toolkit.Graphics.GraphicsDevice graphicsDevice, ISpriteBatch spriteBatch, TextureContent content, HolofunkView view, Transform parentTransform, int depth)
+        protected override void DoRender(Moment now, GraphicsDevice graphicsDevice, ISpriteBatch spriteBatch, TextureContent content, HolofunkView view, Transform parentTransform, int depth)
         {
             m_videoRateCounter += m_videoRateFunc();
             if (m_videoRateCounter >= 1f) {
@@ -184,14 +184,14 @@ namespace Holofunk
                             }
                             else {
                                 // blast the data in there with a single pointer-based memory copy
-                                videoImage.RawAccess((intptr, size) => m_videoNode.Texture.SetData(graphicsDevice, new DataPointer(intptr, size), arraySlice: 0, mipSlice: 0));
+                                videoImage.RawAccess((intptr, size) => m_videoNode.Texture.SetData(, arraySlice: 0, mipSlice: 0));
                                 m_lastVideoFrame = videoImage;
                             }
                         }
                     }
                     else {
                         // ain't nothing to show
-                        m_videoNode.Texture.SetData(graphicsDevice, BlankTextureData);
+                        m_videoNode.Texture.SetData(BlankTextureData);
                     }
                 }
             }
