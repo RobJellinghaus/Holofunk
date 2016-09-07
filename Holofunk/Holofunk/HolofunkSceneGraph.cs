@@ -193,7 +193,7 @@ namespace Holofunk
             m_slide.LocalTransform = new Transform(new Vector2(
                 m_canvasSize.X - (int)(currentSlide.Width),
                 currentSlide.Height / 8));
-            m_slide.Color = holofunkModel.SlideVisible ? Color.White : new Color(0);
+            m_slide.Color = holofunkModel.SlideVisible ? Color.White : new Color(0, 0, 0, 0);
 
             Spam.Graphics.WriteLine("EndUpdate");
         }

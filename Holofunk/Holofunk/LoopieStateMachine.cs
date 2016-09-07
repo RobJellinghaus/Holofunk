@@ -127,7 +127,7 @@ namespace Holofunk
                     model.StopRecordingAtCurrentBeat(model.HolofunkModel.Clock.Now);
 
                     model.SceneGraph.HandColor = model.PlayerModel.PlayerColor;
-                    model.SceneGraph.MikeSignalColor = new Color(0);
+                    model.SceneGraph.MikeSignalColor = new Color(0, 0, 0, 0);
                     model.SceneGraph.PopHandTexture();
                 });
 

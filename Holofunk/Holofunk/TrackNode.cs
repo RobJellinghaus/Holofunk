@@ -184,7 +184,7 @@ namespace Holofunk
                             }
                             else {
                                 // blast the data in there with a single pointer-based memory copy
-                                videoImage.RawAccess((intptr, size) => m_videoNode.Texture.SetData(, arraySlice: 0, mipSlice: 0));
+                                videoImage.RawAccess((array, offset, count) => m_videoNode.Texture.SetData(array, (int)offset, (int)count));
                                 m_lastVideoFrame = videoImage;
                             }
                         }

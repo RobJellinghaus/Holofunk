@@ -33,7 +33,7 @@ namespace Holofunk.Core
         readonly Duration<TTime> m_offset;
 
         /// <summary>
-        /// The size of each sliver in this slice; a count of T.
+        /// The size of each sliver in this slice; a count of TValue.
         /// </summary>
         /// <remarks>
         /// Slices are composed of multiple Slivers, one per unit of Duration.

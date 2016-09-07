@@ -19,6 +19,7 @@ using System.Linq;
 namespace Holofunk
 {
     using HolofunkMachine = StateMachineInstance<LoopieEvent>;
+    using Model = Holofunk.StateMachines.Model;
 
     /// <summary>The state of a single Holofunk player.</summary>
     class PlayerModel : Model, ITwoHandedEventSink
