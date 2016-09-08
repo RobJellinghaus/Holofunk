@@ -36,7 +36,7 @@ namespace FNATest
 
             using (SpriteBatch batch = new SpriteBatch(GraphicsDevice))
             {
-                batch.Begin();
+                batch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
                 batch.Draw(
                     _texture,
                     new Vector2(20f, 20f),
