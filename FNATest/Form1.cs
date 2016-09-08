@@ -7,12 +7,14 @@ using System.Windows.Forms;
 using SDL2;
 using System;
 using System.Runtime.InteropServices;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FNATest
 {
     public class FNATestGame : Game
     {
         GraphicsDeviceManager _manager;
+        Texture2D _texture;
 
         public FNATestGame()
         {
@@ -21,9 +23,32 @@ namespace FNATest
             _manager.PreferredBackBufferHeight = 600;
         }
 
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+
+            _texture = Content.Load<Texture2D>("HollowFace0.png");
+        }
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(new Color(128, 128, 0, 255));
+
+            using (SpriteBatch batch = new SpriteBatch(GraphicsDevice))
+            {
+                batch.Begin();
+                batch.Draw(
+                    _texture,
+                    new Vector2(20f, 20f),
+                    new Microsoft.Xna.Framework.Rectangle(0, 0, _texture.Width, _texture.Height),
+                    Color.White,
+                    0.1f, // rotation
+                    new Vector2(0, 0),
+                    2.0f, // scale
+                    SpriteEffects.None,
+                    0);
+                batch.End();
+            }
         }
     }
 
