@@ -1,5 +1,6 @@
 packages/
 BassVst/Win32/
+BassVst/x64/
 Core/bin
 Core/obj/
 FNATest/bin/
@@ -23,3 +24,4 @@ Test/obj/
 *.sdf
 *.opendb
 *.db
+*.suo
