@@ -19,6 +19,10 @@ Test/bin/
 Test/obj/
 VSUnitTests/bin/
 VSUnitTests/obj/
+XNA-Sample/Content1/WindowsGame1/WindowsGame1/bin/
+XNA-Sample/Content1/WindowsGame1/WindowsGame1/obj/
+XNA-Sample/Content1/WindowsGame1/WindowsGame1Content/bin/
+XNA-Sample/Content1/WindowsGame1/WindowsGame1Content/obj/
 Test/obj/
 *.opensdf
 *.sdf

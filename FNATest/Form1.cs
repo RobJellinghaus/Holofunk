@@ -15,6 +15,7 @@ namespace FNATest
     {
         GraphicsDeviceManager _manager;
         Texture2D _texture;
+        SpriteFont _font;
 
         public FNATestGame()
         {
@@ -28,6 +29,7 @@ namespace FNATest
             base.LoadContent();
 
             _texture = Content.Load<Texture2D>("HollowFace0.png");
+            _font = Content.Load<SpriteFont>("MoireBold14.xnb");
         }
 
         protected override void Draw(GameTime gameTime)
@@ -47,8 +49,13 @@ namespace FNATest
                     2.0f, // scale
                     SpriteEffects.None,
                     0);
+
+                batch.DrawString(_font, "WOOOPEEE DOOOPEEE", new Vector2(100, 100), Color.Tomato);
+
                 batch.End();
             }
+
+            
         }
     }
 
