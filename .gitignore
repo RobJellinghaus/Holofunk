@@ -25,3 +25,4 @@ Test/obj/
 *.opendb
 *.db
 *.suo
+.vs/
