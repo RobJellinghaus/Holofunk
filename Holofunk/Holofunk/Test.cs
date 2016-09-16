@@ -34,7 +34,7 @@ namespace Holofunk
 
             batch.Draw(tex, new Rectangle(20, 30, 20, 20), Color.AliceBlue);
 
-            Log.CheckOnly("[Draw 10x10 @ (20,30)-(40,50) in A:255 R:240 G:248 B:255]");
+            Log.CheckOnly("[Draw 10x10 @ (20,30)-(40,50) in {R:240 G:248 B:255 A:255}]");
         }
 
     }

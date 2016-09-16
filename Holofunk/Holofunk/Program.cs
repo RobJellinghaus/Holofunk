@@ -17,6 +17,10 @@ namespace Holofunk
         /// <summary>The main entry point for the application.</summary>
         static void Main(string[] args)
         {
+            // Force FNA to not load audio.
+            // set FNA_AUDIO_DISABLE_SOUND=1
+            Environment.SetEnvironmentVariable("FNA_AUDIO_DISABLE_SOUND", "1");
+
             using (HolofunkGame game = new HolofunkGame())
             {
                 //var secondary = new HolofunkRenderer(game);

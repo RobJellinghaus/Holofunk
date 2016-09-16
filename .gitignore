@@ -1,7 +1,8 @@
 packages/
 BassVst/Win32/
 BassVst/x64/
-Core/bin
+BassVst/Release/
+Core/bin/
 Core/obj/
 FNATest/bin/
 FNATest/obj/
