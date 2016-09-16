@@ -211,6 +211,9 @@ namespace Holofunk.Kinect
         {
             MultiSourceFrameReference frameReference = e.FrameReference;
 
+            // If you hit an E_FAIL here and the Kinect is starting up and shutting down repeatedly,
+            // check your "USB Suspend" and "Link state power management" advanced power settings:
+            // see https://social.msdn.microsoft.com/Forums/en-US/fb5d5590-4cb9-4c99-918a-4af18017b86f/kinect-service-shutting-down?forum=kinectv2sdk&prof=required
             MultiSourceFrame multiSourceFrame = frameReference.AcquireFrame();
             DepthFrame depthFrame = null;
             ColorFrame colorFrame = null;
