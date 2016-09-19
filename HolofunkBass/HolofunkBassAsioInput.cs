@@ -5,11 +5,7 @@
 
 using Holofunk.Core;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
 using Un4seen.Bass;
 using Un4seen.Bass.AddOn.Mix;
 using Un4seen.Bass.Misc;

@@ -3,17 +3,6 @@
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
-using Holofunk.Core;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
-using Un4seen.Bass;
-using Un4seen.Bass.AddOn.Mix;
-using Un4seen.Bass.Misc;
-using Un4seen.BassAsio;
 
 // This is in the Holofunk namespace rather than Holofunk.Bass, as the latter's Bass suffix
 // collides with the Bass.NET's Bass namespace.

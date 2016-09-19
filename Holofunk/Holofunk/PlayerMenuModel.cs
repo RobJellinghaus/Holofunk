@@ -4,22 +4,14 @@
 ////////////////////////////////////////////////////////////////////////
 
 using Holofunk.Core;
-using Holofunk.Kinect;
-using Holofunk.SceneGraphs;
-using Holofunk.StateMachines;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 
 namespace Holofunk
 {
     using Model = Holofunk.StateMachines.Model;
-    
+
     /// <summary>Base class for menu items; exposes only the label.</summary>
     /// <remarks>This lets the scene graph avoid having to deal with polymorphic Action types.
     /// (In other words, the scene graph only cares what the menu items look like, not what

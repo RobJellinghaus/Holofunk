@@ -5,18 +5,6 @@
 
 using Holofunk.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
-using System.Windows.Forms;
-using Un4seen.Bass;
-using Un4seen.Bass.AddOn.Fx;
-using Un4seen.Bass.AddOn.Mix;
-using Un4seen.Bass.AddOn.Vst;
-using Un4seen.Bass.Misc;
-using Un4seen.BassAsio;
 
 namespace Holofunk
 {

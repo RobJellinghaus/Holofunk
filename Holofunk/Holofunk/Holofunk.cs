@@ -8,20 +8,13 @@ using Holofunk.Kinect;
 using Holofunk.SceneGraphs;
 using Holofunk.StateMachines;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Holofunk
 {
     // sort out our WinForms vs. XNA Name Battle
-    using SysColor = System.Drawing.Color;
     using Color = Microsoft.Xna.Framework.Color;
     using HolofunkMachine = StateMachineInstance<LoopieEvent>;
 
@@ -222,7 +215,7 @@ namespace Holofunk
 
             // oh dear
 
-            m_holofunkBass.SetBaseForm((Form)Window.Handle, MagicNumbers.MaxStreamCount);
+            //m_holofunkBass.SetBaseForm((Form)Window, MagicNumbers.MaxStreamCount);
 
             Window.Title = "Holofunk Alpha";
             Window.AllowUserResizing = true;

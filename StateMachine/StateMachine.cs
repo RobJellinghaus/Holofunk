@@ -4,11 +4,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 using Holofunk.Core;
-using System;
-using System.Diagnostics;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace Holofunk.StateMachines
 {

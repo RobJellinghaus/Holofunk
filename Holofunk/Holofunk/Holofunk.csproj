@@ -123,6 +123,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HolofunkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PlayerEffectSpaceSceneGraph.cs" />
     <Compile Include="PlayerEffectSpaceModel.cs" />
     <Compile Include="PlayerHandModel.cs" />
