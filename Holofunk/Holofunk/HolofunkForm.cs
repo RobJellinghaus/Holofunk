@@ -12,8 +12,9 @@ using System.Windows.Forms;
 
 namespace Holofunk
 {
-    class HolofunkForm : Form
+    public class HolofunkForm : Form
     {
+        private static HolofunkForm _primaryForm;
         private static HolofunkGame _holofunkGame;
         private static bool _gameStarted;
 
@@ -45,10 +46,13 @@ namespace Holofunk
         [DllImport("user32.dll")]
         private static extern IntPtr ShowWindow(IntPtr handle, int command);
 
-        public HolofunkForm(HolofunkGame holofunkGame, bool isSecondaryForm)
+        public HolofunkForm(bool isSecondaryForm)
         {
-            _holofunkGame = holofunkGame;
             _isSecondaryForm = isSecondaryForm;
+            if (!isSecondaryForm)
+            {
+                _primaryForm = this;
+            }
 
             // Hardcode to 1080p size of Kinect color buffer for now
             Size = new Size(1920, 1080);
@@ -100,7 +104,7 @@ namespace Holofunk
 
         private static void GameThread()
         {
-            using (_holofunkGame = new HolofunkGame())
+            using (_holofunkGame = new HolofunkGame(_primaryForm))
             {
                 _gameStarted = true;
                 _holofunkGame.Run();

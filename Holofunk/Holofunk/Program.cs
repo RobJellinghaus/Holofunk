@@ -20,7 +20,7 @@ namespace Holofunk
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HolofunkForm(new HolofunkGame(), false));
+            Application.Run(new HolofunkForm(false));
         }
     }
 }
