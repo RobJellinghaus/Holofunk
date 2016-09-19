@@ -133,6 +133,8 @@ namespace Holofunk
 
         readonly GraphicsDeviceManager m_graphicsDeviceManager;
 
+        readonly HolofunkForm m_primaryForm;
+
         struct EventEntry
         {
             public readonly LoopieEvent Event;
@@ -161,9 +163,10 @@ namespace Holofunk
         // how large is our viewport
         Vector2 m_viewportSize;
 
-        public HolofunkGame() 
+        public HolofunkGame(HolofunkForm primaryForm) 
         {
             m_clock = new Clock(MagicNumbers.InitialBpm, MagicNumbers.BeatsPerMeasure, HolofunkBassAsio.InputChannelCount);
+            m_primaryForm = primaryForm;
 
             // Setup the relative directory to the executable directory
             // for loading contents with the ContentManager
@@ -214,7 +217,7 @@ namespace Holofunk
 
             // oh dear
 
-            //m_holofunkBass.SetBaseForm((Form)Window, MagicNumbers.MaxStreamCount);
+            m_holofunkBass.SetBaseForm(m_primaryForm, MagicNumbers.MaxStreamCount);
 
             Window.Title = "Holofunk Alpha";
             Window.AllowUserResizing = true;
