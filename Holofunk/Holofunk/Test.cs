@@ -3,19 +3,9 @@
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
-using Holofunk.Core;
-using Holofunk.SceneGraphs;
-using Holofunk.StateMachines;
 using Holofunk.Tests;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 
 namespace Holofunk
 {

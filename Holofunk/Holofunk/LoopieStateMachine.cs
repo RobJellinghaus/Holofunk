@@ -3,19 +3,13 @@
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
-using Holofunk;
 using Holofunk.Core;
 using Holofunk.Kinect;
 using Holofunk.SceneGraphs;
 using Holofunk.StateMachines;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 namespace Holofunk
 
 {
@@ -30,7 +24,6 @@ namespace Holofunk
     using PlayerState = State<LoopieEvent, PlayerHandModel, PlayerHandModel>;
     using PlayerToPlayerMenuState = State<LoopieEvent, PlayerMenuModel<PlayerHandModel>, PlayerHandModel>;
     using PlayerToEffectState = State<LoopieEvent, PlayerEffectSpaceModel, PlayerHandModel>;
-    using EffectState = State<LoopieEvent, PlayerEffectSpaceModel, PlayerEffectSpaceModel>;
 
     using PlayerAction = Action<LoopieEvent, PlayerHandModel>;
 

@@ -3,13 +3,7 @@
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 
-using Holofunk.Core;
-using Holofunk.Kinect;
-using Holofunk.SceneGraphs;
-using Holofunk.StateMachines;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Design;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Holofunk

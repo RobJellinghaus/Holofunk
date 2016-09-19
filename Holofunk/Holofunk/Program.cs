@@ -4,11 +4,6 @@
 ////////////////////////////////////////////////////////////////////////
 
 using System;
-using System.Diagnostics;
-using System.Threading;
-using System.Windows.Forms;
-using Un4seen.Bass;
-using Un4seen.BassAsio;
 
 namespace Holofunk
 {

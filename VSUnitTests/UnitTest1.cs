@@ -3,15 +3,8 @@
 // All Rights Reserved.                                               //
 ////////////////////////////////////////////////////////////////////////
 using Holofunk.Core;
-using Holofunk.SceneGraphs;
-using Holofunk.StateMachines;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 
 namespace VSUnitTests
 {
