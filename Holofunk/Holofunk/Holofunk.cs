@@ -173,10 +173,9 @@ namespace Holofunk
             //m_graphicsDeviceManager.IsFullScreen = true;
             //m_graphicsDeviceManager.PreferredFullScreenOutputIndex = 0;
             m_graphicsDeviceManager.SynchronizeWithVerticalRetrace = false;
-
-            Screen primary = System.Windows.Forms.Screen.PrimaryScreen;
-            m_graphicsDeviceManager.PreferredBackBufferWidth = primary.Bounds.Width;
-            m_graphicsDeviceManager.PreferredBackBufferHeight = primary.Bounds.Height;
+            
+            m_graphicsDeviceManager.PreferredBackBufferWidth = 1920;
+            m_graphicsDeviceManager.PreferredBackBufferHeight = 1080;
 
             m_lastCollectionCounts = new int[GC.MaxGeneration + 1];
 

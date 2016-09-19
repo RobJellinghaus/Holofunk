@@ -7,13 +7,15 @@ using SDL2;
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Holofunk
 {
     class HolofunkForm : Form
     {
-        readonly HolofunkGame _holofunkGame;
+        private static HolofunkGame _holofunkGame;
+        private static bool _gameStarted;
 
         /// <summary>
         /// Is this the secondary form?
@@ -55,6 +57,16 @@ namespace Holofunk
 
             InitializeComponent();
 
+            if (!_isSecondaryForm)
+            {
+                new Thread(GameThread).Start();
+
+                while (!_gameStarted)
+                {
+                    Thread.Sleep(10);
+                }
+            }
+
             Panel gamePanel = new Panel();
             gamePanel.Bounds = System.Drawing.Rectangle.FromLTRB(0, 0, ClientSize.Width, ClientSize.Height);
             gamePanel.Dock = DockStyle.Fill;
@@ -86,6 +98,15 @@ namespace Holofunk
             }
         }
 
+        private static void GameThread()
+        {
+            using (_holofunkGame = new HolofunkGame())
+            {
+                _gameStarted = true;
+                _holofunkGame.Run();
+            }
+
+        }
         private void WindowClosing(object sender, FormClosingEventArgs e)
         {
             if (!_isSecondaryForm)
@@ -122,7 +143,7 @@ namespace Holofunk
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.Text = "Holofunk";
         }
 
         #endregion
