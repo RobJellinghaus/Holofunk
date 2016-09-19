@@ -522,12 +522,15 @@ namespace Holofunk.Kinect
             }
 
             for (int i = 0; i < PlayerCount; i++) {
-                // Update the bodies with the latest pose state.  This may fire events and state machine actions.
-                m_holofunkBodies[i].Update(this,
-                    m_eventSinkArray[i].OnLeftHand,
-                    m_eventSinkArray[i].OnLeftArm,
-                    m_eventSinkArray[i].OnRightHand,
-                    m_eventSinkArray[i].OnRightArm);
+                if (m_eventSinkArray[i] != null)
+                {
+                    // Update the bodies with the latest pose state.  This may fire events and state machine actions.
+                    m_holofunkBodies[i].Update(this,
+                        m_eventSinkArray[i].OnLeftHand,
+                        m_eventSinkArray[i].OnLeftArm,
+                        m_eventSinkArray[i].OnRightHand,
+                        m_eventSinkArray[i].OnRightArm);
+                }
             }
 
             if (m_bodyFrameUpdateAction != null) {

@@ -222,7 +222,7 @@ namespace Holofunk
 
             // oh dear
 
-            //m_holofunkBass.SetBaseForm((Form)Window.Handle, MagicNumbers.MaxStreamCount);
+            m_holofunkBass.SetBaseForm((Form)Window.Handle, MagicNumbers.MaxStreamCount);
 
             Window.Title = "Holofunk Alpha";
             Window.AllowUserResizing = true;

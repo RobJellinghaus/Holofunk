@@ -111,7 +111,7 @@ namespace Holofunk
             m_tinyDot = content.Load<Texture2D>("2x2_filled_square" + EXT);
             m_unmuteCircle = content.Load<Texture2D>("UnmuteCircle" + EXT);
 
-            m_spriteFont = content.Load<SpriteFont>("Arial16");
+            m_spriteFont = content.Load<SpriteFont>("MoireBold14.xnb");
 
             m_device = device;
 
