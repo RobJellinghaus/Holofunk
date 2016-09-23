@@ -77,7 +77,7 @@ namespace Holofunk.SceneGraphs
         {
             m_spriteBatch.Draw(
                 texture,
-                new Rectangle(
+                new RectangleF(
                     (int)(destRectangle.X * m_transform.Scale.X + m_transform.Translation.X),
                     (int)(destRectangle.Y * m_transform.Scale.Y + m_transform.Translation.Y),
                     (int)(destRectangle.Width * m_transform.Scale.X),

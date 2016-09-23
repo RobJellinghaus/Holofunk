@@ -177,16 +177,16 @@ namespace Holofunk
                 MagicNumbers.HeadCaptureSize);
 
             if (rect.X < 0) {
-                rect.Offset(new Point(-rect.X, 0));
+                rect.Offset(-rect.X, 0);
             }
             if (rect.Y < 0) {
-                rect.Offset(new Point(0, -rect.Y));
+                rect.Offset(0, -rect.Y);
             }
             if (rect.Right > kinect.ViewportSize.X) {
-                rect.Offset(new Point((int)kinect.ViewportSize.X - rect.Right, 0));
+                rect.Offset((int)kinect.ViewportSize.X - rect.Right, 0);
             }
             if (rect.Bottom > kinect.ViewportSize.Y) {
-                rect.Offset(new Point(0, (int)kinect.ViewportSize.Y - rect.Bottom));
+                rect.Offset(0, (int)kinect.ViewportSize.Y - rect.Bottom);
             }
 
             int startOffset = rect.X * 4;
