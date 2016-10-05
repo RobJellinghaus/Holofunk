@@ -72,26 +72,26 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>..\Lib\SharpDX_3.0.2_robjellinghaus\x64_debug\SharpDX.dll</HintPath>
+      <HintPath>..\Lib\SharpDX_3.0.2_robjellinghaus\x64_release\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Desktop">
-      <HintPath>..\Lib\SharpDX_3.0.2_robjellinghaus\x64_debug\SharpDX.Desktop.dll</HintPath>
+      <HintPath>..\Lib\SharpDX_3.0.2_robjellinghaus\x64_release\SharpDX.Desktop.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D11.Effects, Version=2.5.0.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\SharpDX_3.0.2_robjellinghaus\x64_debug\SharpDX.Direct3D11.Effects.dll</HintPath>
+      <HintPath>..\Lib\SharpDX_3.0.2_robjellinghaus\x64_release\SharpDX.Direct3D11.Effects.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Mathematics">
-      <HintPath>..\Lib\SharpDX_3.0.2_robjellinghaus\x64_debug\SharpDX.Mathematics.dll</HintPath>
+      <HintPath>..\Lib\SharpDX_3.0.2_robjellinghaus\x64_release\SharpDX.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Toolkit">
-      <HintPath>..\Lib\SharpDX_3.0.2_toolkit_smartk8_robjellinghaus\x64_debug\SharpDX.Toolkit.dll</HintPath>
+      <HintPath>..\Lib\SharpDX_3.0.2_toolkit_smartk8_robjellinghaus\x64_release\SharpDX.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Toolkit.CompilerTask">
-      <HintPath>..\Lib\SharpDX_3.0.2_toolkit_smartk8_robjellinghaus\x64_debug\SharpDX.Toolkit.CompilerTask.dll</HintPath>
+      <HintPath>..\Lib\SharpDX_3.0.2_toolkit_smartk8_robjellinghaus\x64_release\SharpDX.Toolkit.CompilerTask.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Toolkit.Graphics">
-      <HintPath>..\Lib\SharpDX_3.0.2_toolkit_smartk8_robjellinghaus\x64_debug\SharpDX.Toolkit.Graphics.dll</HintPath>
+      <HintPath>..\Lib\SharpDX_3.0.2_toolkit_smartk8_robjellinghaus\x64_release\SharpDX.Toolkit.Graphics.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
